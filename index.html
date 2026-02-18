@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Performance Coaching Funnel</title>
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/yryb89qho1.js" async type="module"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --dark: #0f0f0f;
+    --dark-2: #161616;
+    --dark-3: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --muted: #888;
+    --orange: #FF4D00;
+    --orange-light: #FF6B2B;
+    --white: #f5f5f5;
+    --gold: #C9A84C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ============================================
+     NAV / PAGE SWITCHER
+  ============================================ */
+  .funnel-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .funnel-nav .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--orange);
+  }
+
+  .funnel-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .step-btn {
+    background: none;
+    border: none;
+    cursor: default;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    color: var(--muted);
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .step-btn.active {
+    color: var(--white);
+  }
+
+  .step-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  .step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    border: 1px solid currentColor;
+    flex-shrink: 0;
+  }
+
+  .step-btn.active .step-num {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+  }
+
+  .step-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ============================================
+     PAGES
+  ============================================ */
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+  .page.active { display: block; }
+
+  /* ============================================
+     PAGE 1: STEP FORM
+  ============================================ */
+  #page-form {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* BG effects */
+  .bg-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,77,0,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,77,0,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(255,77,0,0.05) 0%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Progress bar at top of form page */
+  .sq-progress-bar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 99;
+    display: block;
+  }
+
+  .sq-progress-fill {
+    height: 100%;
+    background: var(--orange);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(255,77,0,0.5);
+  }
+
+  /* Step counter */
+  .sq-step-counter {
+    position: fixed;
+    top: 68px;
+    right: 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    z-index: 99;
+    transition: opacity 0.3s;
+  }
+
+  .sq-step-counter span { color: var(--orange); }
+
+  /* Full-screen step wrapper */
+  .sq-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 40px;
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - 56px);
+    overflow: visible;
+  }
+
+  /* Each question slide */
+  .sq-step {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 580px;
+    padding: 0 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  /* States */
+  .sq-step.state-enter  { opacity: 0; transform: translate(-50%, calc(-50% + 28px)); }
+  .sq-step.state-active { opacity: 1; transform: translate(-50%, -50%); pointer-events: all; }
+  .sq-step.state-exit   { opacity: 0; transform: translate(-50%, calc(-50% - 28px)); }
+
+  /* Validation error */
+  @keyframes sq-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .sq-input.sq-error, .sq-textarea.sq-error {
+    border-color: #ff4444 !important;
+    animation: sq-shake 0.4s ease;
+  }
+  .sq-choices.sq-error .sq-choice {
+    border-color: rgba(255, 68, 68, 0.5) !important;
+    animation: sq-shake 0.4s ease;
+  }
+  .sq-error-msg {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 8px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .sq-error-msg.visible { opacity: 1; }
+
+  /* Question number tag */
+  .sq-qnum {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+  }
+
+  .sq-qnum::after {
+    content: '↓';
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  /* Question text */
+  .sq-question {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .sq-question em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .sq-hint {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.55;
+  }
+
+  /* Text inputs */
+  .sq-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color 0.25s;
+    caret-color: var(--orange);
+  }
+
+  .sq-input::placeholder { color: #333; }
+
+  .sq-input:focus { border-bottom-color: var(--orange); }
+
+  /* Input row (for name split) */
+  .sq-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* Choice grid */
+  .sq-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .sq-choices.cols-1 { grid-template-columns: 1fr; }
+
+  .sq-choice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: all 0.18s;
+    user-select: none;
+    position: relative;
+  }
+
+  .sq-choice:hover {
+    border-color: rgba(255,77,0,0.4);
+    color: var(--text);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .sq-choice.selected {
+    border-color: var(--orange);
+    color: var(--white);
+    background: rgba(255,77,0,0.07);
+  }
+
+  .sq-choice-key {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--muted);
+    flex-shrink: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    transition: all 0.18s;
+  }
+
+  .sq-choice.selected .sq-choice-key {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+  }
+
+  /* Select dropdown */
+  .sq-select {
+    width: 100%;
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    padding: 16px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .sq-select:focus { border-color: var(--orange); }
+  .sq-select option { background: var(--dark-2); }
+
+  /* Textarea */
+  .sq-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    padding: 12px 0;
+    outline: none;
+    resize: none;
+    height: 90px;
+    transition: border-color 0.25s;
+    caret-color: var(--orange);
+    line-height: 1.6;
+  }
+
+  .sq-textarea::placeholder { color: #333; }
+  .sq-textarea:focus { border-bottom-color: var(--orange); }
+
+  /* Action row */
+  .sq-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  .sq-back {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sq-back:hover { color: var(--text); }
+
+  .sq-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .sq-next:hover {
+    background: var(--orange-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(255,77,0,0.3);
+  }
+
+  .sq-next:active { transform: translateY(0); }
+
+  .sq-next .arrow { font-size: 15px; transition: transform 0.2s; }
+  .sq-next:hover .arrow { transform: translateX(4px); }
+
+  /* Press Enter hint */
+  .sq-enter-hint {
+    font-size: 11px;
+    color: #444;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .sq-enter-hint kbd {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 6px;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'Barlow', sans-serif;
+  }
+
+  /* Completion screen */
+  .sq-complete {
+    text-align: center;
+  }
+
+  .sq-complete-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255,77,0,0.1);
+    border: 1px solid rgba(255,77,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 24px;
+  }
+
+  .sq-complete-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 70px);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  .sq-complete-headline em {
+    color: var(--orange);
+    font-style: normal;
+    display: block;
+  }
+
+  .sq-complete-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.6;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* BUTTONS (shared) */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--orange-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(255,77,0,0.3);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-arrow {
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+  /* ============================================
+     PAGE 2: BOOKING
+  ============================================ */
+  #page-booking {
+    background: var(--black);
+  }
+
+  .booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  .booking-left {
+    background: var(--dark-2);
+    border-right: 1px solid var(--border);
+    padding: 60px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .booking-left::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-light), transparent);
+  }
+
+  .booking-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 28px;
+    padding: 6px 12px;
+    border: 1px solid rgba(255,77,0,0.3);
+    border-radius: 2px;
+  }
+
+  .booking-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 4vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .booking-headline em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .booking-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 360px;
+  }
+
+  .booking-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .booking-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .bd-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: var(--dark-3);
+  }
+
+  .booking-callout {
+    background: rgba(255,77,0,0.07);
+    border: 1px solid rgba(255,77,0,0.2);
+    border-left: 3px solid var(--orange);
+    border-radius: 3px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .booking-callout strong {
+    color: var(--orange);
+  }
+
+  /* Proof strip */
+  .proof-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .proof-avatars {
+    display: flex;
+  }
+
+  .proof-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    background: var(--dark-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-left: -8px;
+  }
+
+  .proof-avatar:first-child { margin-left: 0; }
+
+  .proof-text {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .proof-text strong {
+    color: var(--text);
+    display: block;
+  }
+
+  /* Calendly embed side */
+  .booking-right {
+    padding: 0;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    min-height: 660px;
+    position: relative;
+  }
+
+  /* Wrapper that holds the iframe and overlays the dark theme */
+  .calendly-wrap {
+    flex: 1;
+    position: relative;
+    min-height: 660px;
+  }
+
+  /* The actual Calendly inline widget */
+  .calendly-embed {
+    width: 100%;
+    height: 100%;
+    min-height: 660px;
+    border: none;
+  }
+
+  /* Loading skeleton shown before Calendly loads */
+  .calendly-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: var(--black);
+    pointer-events: none;
+    transition: opacity 0.4s;
+    z-index: 2;
+  }
+
+  .calendly-loader.hidden { opacity: 0; pointer-events: none; }
+
+  .loader-spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border);
+    border-top-color: var(--orange);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loader-text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Setup instruction banner — shown when URL is placeholder */
+  .calendly-setup-banner {
+    background: rgba(255,77,0,0.06);
+    border: 1px dashed rgba(255,77,0,0.3);
+    border-radius: 4px;
+    margin: 32px;
+    padding: 28px;
+    text-align: center;
+  }
+
+  .setup-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .setup-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .setup-steps {
+    text-align: left;
+    max-width: 380px;
+    margin: 16px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .setup-step {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .setup-step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255,77,0,0.15);
+    border: 1px solid rgba(255,77,0,0.3);
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .setup-step strong { color: var(--text); }
+
+  .setup-code {
+    display: inline-block;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--orange);
+    margin-top: 4px;
+  }
+
+  /* ============================================
+     PAGE 3: VSL + LANDING
+  ============================================ */
+  #page-vsl {
+    background: var(--black);
+  }
+
+  /* HERO BAND */
+  .vsl-hero {
+    position: relative;
+    background: var(--dark-2);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .vsl-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), var(--orange-light), transparent);
+  }
+
+  .vsl-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 0;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .vsl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255,77,0,0.25);
+    border-radius: 2px;
+    background: rgba(255,77,0,0.05);
+  }
+
+  .vsl-badge .dot {
+    width: 5px;
+    height: 5px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .vsl-main-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .vsl-main-headline em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .vsl-main-headline .accent-line {
+    display: block;
+    font-size: 0.55em;
+    letter-spacing: 4px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .vsl-sub {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 460px;
+  }
+
+  .vsl-sub strong {
+    color: var(--text);
+  }
+
+  .outcomes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .outcome-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .outcome-icon {
+    width: 22px;
+    height: 22px;
+    background: rgba(255,77,0,0.15);
+    border: 1px solid rgba(255,77,0,0.3);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    color: var(--orange);
+  }
+
+  /* VSL VIDEO BOX */
+  .vsl-video-col {
+    position: relative;
+  }
+
+  .vsl-video-wrapper {
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .vsl-video-wrapper wistia-player {
+    display: block;
+    width: 100%;
+  }
+
+  wistia-player[media-id='yryb89qho1']:not(:defined) {
+    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/yryb89qho1/swatch');
+    display: block;
+    filter: blur(5px);
+    padding-top: 56.25%;
+  }
+
+  .vsl-video-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Urgency ticker */
+  .vsl-urgency {
+    padding: 0 0 60px;
+    padding-top: 16px;
+    grid-column: 1 / -1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* ---- VSL Landing Content ---- */
+  .vsl-content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  /* Section label */
+  .sec-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1.5px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .sec-title em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .sec-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 640px;
+  }
+
+  .sec-body strong {
+    color: var(--text);
+  }
+
+  /* Problem/Solution block */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .ps-col {
+    background: var(--dark-2);
+    padding: 32px;
+  }
+
+  .ps-col-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ps-col.problem .ps-col-label { color: #666; }
+  .ps-col.solution .ps-col-label { color: var(--orange); }
+
+  .ps-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .ps-item:last-child { border-bottom: none; }
+
+  .ps-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 24px;
+  }
+
+  .testimonials-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .testimonial-card {
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .test-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    padding-top: 12px;
+  }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .test-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .test-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .test-role {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .test-result {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Video testimonial specific */
+  .testimonial-card.video {
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--dark);
+  }
+
+  .testimonial-card.video {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .testimonial-card.video::before {
+    display: none;
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    display: block;
+  }
+
+  .video-info {
+    padding: 18px 20px;
+    background: var(--dark-3);
+  }
+
+  .video-quote {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  /* Transformation Gallery */
+  .transformations-section {
+    padding: 80px 24px;
+    background: var(--black);
+  }
+
+  .transformations-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .transform-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .transform-card {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .transform-card:hover {
+    border-color: rgba(255,77,0,0.4);
+  }
+
+  .transform-images {
+    background: var(--dark-3);
+  }
+
+  .transform-img {
+    aspect-ratio: 3/4;
+    background: var(--dark-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .transform-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .transform-details {
+    padding: 16px;
+  }
+
+  .transform-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .transform-stats {
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+
+  /* What you get */
+  .program-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .program-item {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .program-item:hover {
+    border-color: rgba(255,77,0,0.3);
+  }
+
+  .program-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .program-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .program-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* Coach section */
+  .coach-section {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 24px;
+  }
+
+  .coach-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .coach-photo {
+    width: 200px;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coach-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .coach-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(transparent, rgba(255,77,0,0.1));
+  }
+
+  .coach-credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cred-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding: 80px 24px;
+    background: var(--black);
+  }
+
+  .faq-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    line-height: 1.4;
+  }
+
+  .faq-question:hover { color: var(--orange); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    color: var(--orange);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+  }
+
+  .faq-answer-inner {
+    padding: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* Spots counter */
+  .spots-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,77,0,0.08);
+    border: 1px solid rgba(255,77,0,0.25);
+    border-radius: 3px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .spots-warning .spots-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto 64px;
+    background: var(--dark-2);
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-num span { color: var(--orange); }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Footer */
+  .site-footer {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ============================================
+     RESPONSIVE
+  ============================================ */
+  /* ============================================
+     TABLET (max 900px)
+  ============================================ */
+  @media (max-width: 900px) {
+    .booking-layout { grid-template-columns: 1fr; }
+    .booking-right { padding: 32px 24px; }
+    .booking-left { padding: 40px 24px; }
+    .vsl-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .vsl-video-col { order: -1; }
+    .ps-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .program-grid { grid-template-columns: 1fr; }
+    .coach-inner { grid-template-columns: 1fr; }
+    .stats-bar { max-width: 100%; }
+  }
+
+  /* ============================================
+     MOBILE (max 600px)
+  ============================================ */
+  @media (max-width: 600px) {
+
+    /* NAV */
+    .funnel-nav { padding: 0 16px; height: 52px; }
+    .funnel-nav .brand { font-size: 16px; letter-spacing: 2px; }
+    .step-btn { padding: 6px 10px; font-size: 11px; gap: 6px; }
+    .step-btn > span:last-child { display: none; }
+    .step-divider { width: 16px; }
+    .sq-progress-bar { top: 52px; }
+    .sq-step-counter { top: 62px; right: 16px; font-size: 10px; }
+
+    /* FORM STEP ENGINE */
+    .sq-stage { padding: 72px 0 80px; }
+    .sq-step { padding: 32px 20px 24px; }
+    .sq-step.state-enter { transform: translate(-50%, calc(-50% + 20px)); }
+    .sq-step.state-exit  { transform: translate(-50%, calc(-50% - 20px)); }
+    .sq-question { font-size: clamp(28px, 8vw, 40px); margin-bottom: 8px; }
+    .sq-hint { font-size: 14px; margin-bottom: 24px; }
+    .sq-input { font-size: 18px; padding: 10px 0; }
+    .sq-choices { grid-template-columns: 1fr; gap: 8px; }
+    .sq-choice { padding: 14px 16px; font-size: 14px; }
+    .sq-actions { margin-top: 24px; flex-wrap: wrap; gap: 12px; }
+    .sq-next { flex: 1; justify-content: center; padding: 15px 20px; font-size: 12px; }
+    .sq-back { font-size: 12px; }
+    .sq-textarea { font-size: 15px; height: 100px; }
+    .sq-complete-headline { font-size: clamp(36px, 10vw, 52px); }
+    .btn-primary { width: 100%; justify-content: center; padding: 16px 20px; }
+
+    /* BOOKING */
+    .booking-headline { font-size: 38px; }
+    .booking-desc { font-size: 14px; }
+    .proof-strip { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+    /* VSL */
+    .vsl-hero-inner { padding: 28px 16px 0; }
+    .vsl-main-headline { font-size: clamp(34px, 10vw, 52px); }
+    .vsl-sub { font-size: 15px; }
+    .vsl-play-btn { width: 60px; height: 60px; font-size: 20px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat-item { flex: 1 1 50%; border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+    .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+    .stat-num { font-size: 28px; }
+    .sec-title { font-size: clamp(28px, 8vw, 42px); }
+    .coach-photo { width: 100%; max-width: 320px; }
+    .faq-question { font-size: 15px; }
+    .testimonials-section { padding: 48px 16px; }
+    .program-section { padding: 48px 16px; }
+    .vsl-content { padding: 48px 16px; }
+    .ps-col { padding: 20px; }
+    .ps-item { font-size: 13px; }
+    .booking-callout { font-size: 13px; }
+  }
+
+  /* Very small screens */
+  @media (max-width: 380px) {
+    .sq-input-row { grid-template-columns: 1fr; }
+    .funnel-steps { gap: 0; }
+    .step-btn { padding: 4px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="funnel-nav">
+  <div class="brand">TA Coaching</div>
+  <div class="funnel-steps">
+    <button class="step-btn active" id="nav-form">
+      <span class="step-num">1</span>
+      <span>Application</span>
+    </button>
+    <div class="step-divider"></div>
+    <button class="step-btn" id="nav-booking">
+      <span class="step-num">2</span>
+      <span>Book Call</span>
+    </button>
+    <div class="step-divider"></div>
+    <button class="step-btn" id="nav-vsl">
+      <span class="step-num">3</span>
+      <span>Watch First</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================
+     PAGE 1: STEP-BY-STEP FORM
+============================================ -->
+<div class="page active" id="page-form">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- Progress bar -->
+  <div class="sq-progress-bar" id="sq-progress-bar">
+    <div class="sq-progress-fill" id="sq-progress-fill" style="width: 0%"></div>
+  </div>
+  <div class="sq-step-counter" id="sq-step-counter">
+    <span id="sq-current">1</span> / <span id="sq-total">9</span>
+  </div>
+
+  <!-- Stage: all steps live here -->
+  <div class="sq-stage" id="sq-stage">
+
+    <!-- STEP 0: Intro splash -->
+    <div class="sq-step state-active" data-step="0" id="sq-step-0">
+      <div class="sq-qnum">Application — Limited Spots</div>
+      <h2 class="sq-question">Not Everyone <em>Gets In.</em></h2>
+      <p class="sq-hint">We work with driven corporate professionals who are done being average. Answer a few questions honestly — takes under 2 minutes.</p>
+      <div class="sq-actions" style="justify-content: flex-start;">
+        <button class="sq-next" onclick="sqNext()">
+          Start Application <span class="arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 1: Name -->
+    <div class="sq-step state-enter" data-step="1" id="sq-step-1">
+      <div class="sq-qnum">Question 1</div>
+      <h2 class="sq-question">What's your <em>name?</em></h2>
+      <p class="sq-hint">First and last.</p>
+      <div class="sq-input-row">
+        <div>
+          <input type="text" class="sq-input" id="sq-fname" placeholder="First" autocomplete="given-name">
+        </div>
+        <div>
+          <input type="text" class="sq-input" id="sq-lname" placeholder="Last" autocomplete="family-name">
+        </div>
+      </div>
+      <p class="sq-enter-hint">Press <kbd>Enter ↵</kbd> to continue</p>
+      <p class="sq-error-msg" id="sq-err-1">Please enter your first and last name.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Email -->
+    <div class="sq-step state-enter" data-step="2" id="sq-step-2">
+      <div class="sq-qnum">Question 2</div>
+      <h2 class="sq-question">Your <em>email</em> address?</h2>
+      <p class="sq-hint">Where we'll send your confirmation and call details.</p>
+      <input type="email" class="sq-input" id="sq-email" placeholder="you@company.com" autocomplete="email">
+      <p class="sq-enter-hint">Press <kbd>Enter ↵</kbd> to continue</p>
+      <p class="sq-error-msg" id="sq-err-2">Please enter a valid email address.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Industry -->
+    <div class="sq-step state-enter" data-step="3" id="sq-step-3">
+      <div class="sq-qnum">Question 3</div>
+      <h2 class="sq-question">What's your <em>industry?</em></h2>
+      <p class="sq-hint">We tailor the program to your actual schedule and lifestyle.</p>
+      <div class="sq-choices" id="sq-industry">
+        <div class="sq-choice" data-val="finance" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">A</span> Finance / Banking
+        </div>
+        <div class="sq-choice" data-val="tech" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">B</span> Tech / Software
+        </div>
+        <div class="sq-choice" data-val="law" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">C</span> Law / Legal
+        </div>
+        <div class="sq-choice" data-val="consulting" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">D</span> Consulting
+        </div>
+        <div class="sq-choice" data-val="exec" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">E</span> Executive / C-Suite
+        </div>
+        <div class="sq-choice" data-val="founder" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">F</span> Entrepreneur / Founder
+        </div>
+        <div class="sq-choice" data-val="sales" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">G</span> Sales / Business Dev
+        </div>
+        <div class="sq-choice" data-val="other" onclick="sqChoose(this, 'sq-industry')">
+          <span class="sq-choice-key">H</span> Other
+        </div>
+      </div>
+      <p class="sq-error-msg" id="sq-err-3">Please select an option.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Age -->
+    <div class="sq-step state-enter" data-step="4" id="sq-step-4">
+      <div class="sq-qnum">Question 4</div>
+      <h2 class="sq-question">How old <em>are you?</em></h2>
+      <p class="sq-hint">Your training and nutrition protocols are calibrated to your age.</p>
+      <div class="sq-choices" id="sq-age">
+        <div class="sq-choice" data-val="20-24" onclick="sqChoose(this, 'sq-age')">
+            <span class="sq-choice-key">A</span> 20-24
+          </div>
+        <div class="sq-choice" data-val="25-29" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">B</span> 25–29
+        </div>
+        <div class="sq-choice" data-val="30-34" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">C</span> 30–34
+        </div>
+        <div class="sq-choice" data-val="35-39" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">D</span> 35–39
+        </div>
+        <div class="sq-choice" data-val="40-44" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">E</span> 40–44
+        </div>
+        <div class="sq-choice" data-val="45-50" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">F</span> 45–50
+        </div>
+        <!-- <div class="sq-choice" data-val="50+" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">F</span> 50+
+        </div> -->
+      </div>
+      <p class="sq-error-msg" id="sq-err-4">Please select an option.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Primary Goal -->
+    <div class="sq-step state-enter" data-step="5" id="sq-step-5">
+      <div class="sq-qnum">Question 5</div>
+      <h2 class="sq-question">What's your <em>primary goal?</em></h2>
+      <p class="sq-hint">Be honest. There are no wrong answers here.</p>
+      <div class="sq-choices" id="sq-goal">
+        <div class="sq-choice" data-val="muscle" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">A</span> Build serious muscle & size
+        </div>
+        <div class="sq-choice" data-val="fat" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">B</span> Lose fat, get shredded
+        </div>
+        <div class="sq-choice" data-val="recomp" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">C</span> Body recomp — both
+        </div>
+        <div class="sq-choice" data-val="performance" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">D</span> Peak energy & performance
+        </div>
+        <div class="sq-choice" data-val="Bodybuilding Show" onclick="sqChoose(this, 'sq-goal')">
+            <span class="sq-choice-key">e</span> Show prep / Bodybuilding
+          </div>
+      </div>
+      <p class="sq-error-msg" id="sq-err-5">Please select an option.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Obstacle -->
+    <div class="sq-step state-enter" data-step="6" id="sq-step-6">
+      <div class="sq-qnum">Question 6</div>
+      <h2 class="sq-question">Biggest obstacle <em>right now?</em></h2>
+      <p class="sq-hint">What's kept you from getting where you want to be?</p>
+      <div class="sq-choices" id="sq-obstacle">
+        <div class="sq-choice" data-val="time" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">A</span> No time / insane schedule
+        </div>
+        <div class="sq-choice" data-val="results" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">B</span> Tried before, no results
+        </div>
+        <div class="sq-choice" data-val="start" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">C</span> Don't know where to start
+        </div>
+        <div class="sq-choice" data-val="accountability" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">D</span> Accountability / consistency
+        </div>
+      </div>
+      <p class="sq-error-msg" id="sq-err-6">Please select an option.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <div class="sq-step state-enter" data-step="7" id="sq-step-7">
+        <div class="sq-qnum">Question 7</div>
+        <h2 class="sq-question">Are you ready to <em>invest</em> in yourself?</h2>
+        <p class="sq-hint">Be honest. This helps us match you to the right program structure.</p>
+        <div class="sq-choices cols-1" id="sq-invest">
+          <div class="sq-choice" data-val="ready" onclick="sqChoose(this, 'sq-invest')">
+            <span class="sq-choice-key">A</span>
+            <span>Yes — I'm ready. I can invest <strong style="color:var(--text)">$1,500–$2,500</strong> to get this handled</span>
+          </div>
+          <div class="sq-choice" data-val="if-right" onclick="sqChoose(this, 'sq-invest')">
+            <span class="sq-choice-key">B</span>
+            <span>Yes — if it's the right fit, <strong style="color:var(--text)">$2,500–$5,000</strong> is on the table</span>
+          </div>
+          <div class="sq-choice" data-val="maybe" onclick="sqChoose(this, 'sq-invest')">
+            <span class="sq-choice-key">C</span>
+            <span>Maybe — I'd need to know more before committing to <strong style="color:var(--text)">$1,500+</strong></span>
+          </div>
+          <div class="sq-choice" data-val="no" onclick="sqChoose(this, 'sq-invest')">
+            <span class="sq-choice-key">D</span>
+            <span>Not right now — budget isn't there yet</span>
+          </div>
+        </div>
+        <p class="sq-error-msg" id="sq-err-7">Please select an option.</p>
+        <div class="sq-actions">
+          <button class="sq-back" onclick="sqBack()">← Back</button>
+          <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+        </div>
+      </div>
+
+    <!-- STEP 8: Why -->
+    <div class="sq-step state-enter" data-step="8" id="sq-step-8">
+      <div class="sq-qnum">Question 8 — Final</div>
+      <h2 class="sq-question">Why do you <em>want this?</em></h2>
+      <p class="sq-hint">Be specific. What does being in the best shape of your life mean for you — personally and professionally?</p>
+      <textarea class="sq-textarea" id="sq-why" placeholder="The more specific you are, the better we can serve you..."></textarea>
+      <p class="sq-enter-hint" style="margin-top: 8px;">Don't hold back. We read every answer.</p>
+      <p class="sq-error-msg" id="sq-err-8">Please tell us why you want this.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqSubmit()" style="background: var(--orange); padding: 15px 32px;">
+          Submit Application <span class="arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 9: Complete -->
+    <div class="sq-step state-enter sq-complete" data-step="9" id="sq-step-9">
+      <div class="sq-complete-icon">✓</div>
+      <h2 class="sq-complete-headline">
+        Application
+        <em>Received.</em>
+      </h2>
+      <p class="sq-complete-sub">Your application is under review. Book your strategy call now — spots are extremely limited.</p>
+      <button class="btn-primary" onclick="showPage('booking', document.getElementById('nav-booking')); setTimeout(function(){ document.getElementById('calendly-widget').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);">
+        Book Your Call Now <span class="btn-arrow">→</span>
+      </button>
+      <p style="margin-top: 16px; font-size: 12px; color: var(--muted);">🔒 Your answers are private and reviewed by our team only.</p>
+    </div>
+
+  </div><!-- end sq-stage -->
+</div>
+
+
+<!-- ============================================
+     PAGE 2: BOOKING
+============================================ -->
+<div class="page" id="page-booking">
+
+  <div class="booking-layout">
+
+    <!-- LEFT: Info -->
+    <div class="booking-left">
+      <div class="booking-tag">
+        ✓ Application Approved
+      </div>
+
+      <h1 class="booking-headline">
+        Book Your<br>
+        <em>Strategy</em><br>
+        Call.
+      </h1>
+
+      <p class="booking-desc">
+        This is a 30-minute call to map out exactly what your transformation looks like — your timeline, your program structure, and whether we're the right fit to work together.
+      </p>
+
+      <div class="booking-details">
+        <div class="booking-detail-row">
+          <div class="bd-icon">⏱</div>
+          <span>30-minute call</span>
+        </div>
+        <div class="booking-detail-row">
+          <div class="bd-icon">📹</div>
+          <span>Zoom or Google Meet</span>
+        </div>
+        <div class="booking-detail-row">
+          <div class="bd-icon">🎯</div>
+          <span>100% focused on YOUR goals</span>
+        </div>
+        <div class="booking-detail-row">
+          <div class="bd-icon">🔒</div>
+          <span>No pressure, no BS</span>
+        </div>
+      </div>
+
+      <div class="booking-callout">
+        <strong>On this call you'll get:</strong> a clear breakdown of what your transformation looks like, the exact nutrition approach for your body type, and what coaching with us actually involves — so you can make the right decision.
+      </div>
+
+      <div class="proof-strip">
+        <div class="proof-avatars">
+          <div class="proof-avatar">MR</div>
+          <div class="proof-avatar">JT</div>
+          <div class="proof-avatar">AK</div>
+          <div class="proof-avatar">DL</div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- RIGHT: Calendly Embed -->
+    <div class="booking-right">
+      <div class="calendly-wrap">
+
+        <!-- Loading spinner shown while Calendly iframe loads -->
+        <div class="calendly-loader" id="cal-loader">
+          <div class="loader-spinner"></div>
+          <div class="loader-text">Loading Calendar...</div>
+        </div>
+        <div
+          class="calendly-embed"
+          id="calendly-widget"
+          data-calendly-url="https://calendly.com/akibmahdi1/booking-page?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0f0f0f&text_color=e8e8e8&primary_color=FF4D00"
+          style="display:none;">
+        </div>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     PAGE 3: VSL + LANDING
+============================================ -->
+<div class="page" id="page-vsl">
+
+  <!-- HERO + VSL -->
+  <div class="vsl-hero">
+    <div class="vsl-hero-inner">
+
+      <!-- Left: Headlines & Bullets -->
+      <div class="vsl-left">
+        <div class="vsl-badge">
+          <span class="dot"></span>
+          While You Wait — Watch This First
+        </div>
+
+        <h1 class="vsl-main-headline">
+          <span class="accent-line">The Method Behind</span>
+          The Physique<br>
+          <em>You've</em><br>
+          Always Wanted
+        </h1>
+
+        <p class="vsl-sub">
+          In the next 20 minutes, you'll see exactly <strong>how high-performing professionals are transforming their bodies without sacrificing their career, sleep, or social life.</strong>
+        </p>
+
+        <div class="outcomes-list">
+          <div class="outcome-item">
+            <div class="outcome-icon">✓</div>
+            The #1 reason corporate men plateau — and how to break through
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">✓</div>
+            Why more gym time is NOT the answer (and what actually is)
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">✓</div>
+            The 3-pillar system our clients use to build elite physiques in 90 days
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">✓</div>
+            What your transformation roadmap looks like from day 1
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Video -->
+      <div class="vsl-video-col">
+        <div class="vsl-video-wrapper">
+          <wistia-player media-id="yryb89qho1" aspect="1.7777777777777777"></wistia-player>
+        </div>
+        <p class="vsl-video-note">🔒 This video is private and only shared with approved applicants</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Bar -->
+  <div style="padding: 48px 24px 0;">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">400<span>+</span></div>
+        <div class="stat-label">Transformations</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.9<span>★</span></div>
+        <div class="stat-label">Client Rating</div>
+      </div>
+    
+    </div>
+  </div>
+
+  <!-- Problem / Solution -->
+  <div class="vsl-content">
+    <div class="sec-label">The Problem</div>
+    <h2 class="sec-title">You're Winning at Work.<br><em>Why Not Your Body?</em></h2>
+    <p class="sec-body">
+      You've built a real career. You're disciplined enough to outwork everyone in the boardroom. But every time you try to get serious about your physique, <strong>something breaks down.</strong> The schedule. The energy. The results that never come. The problem isn't you — it's the generic approach that wasn't built for your life.
+    </p>
+
+    <div class="ps-grid">
+        <div class="ps-col problem">
+          <div class="ps-col-label">❌ Without a System</div>
+          <div class="ps-item"><span class="ps-icon">—</span>Inconsistent training with no real structure</div>
+          <div class="ps-item"><span class="ps-icon">—</span>Nutrition that's guesswork at best</div>
+          <div class="ps-item"><span class="ps-icon">—</span>Exhausted by 3pm, zero energy to train</div>
+          <div class="ps-item"><span class="ps-icon">—</span>Good weeks followed by weeks off</div>
+          <div class="ps-item"><span class="ps-icon">—</span>Physique that doesn't reflect your work ethic</div>
+        </div>
+        <div class="ps-col solution">
+          <div class="ps-col-label">✓ What You Get</div>
+          
+          <div class="ps-item" style="margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--border);">
+            <span class="ps-icon" style="color: var(--orange); font-size: 18px;">✓</span>
+            <div>
+              <strong style="color: var(--white); display: block; margin-bottom: 4px;">Get Results Without Guesswork</strong>
+              <span style="font-size: 13px; color: var(--muted);">Plans built around your life, not a generic template that leaves you frustrated and stuck</span>
+            </div>
+          </div>
+  
+          <div class="ps-item" style="padding-top: 12px; border-top: 1px solid var(--border);">
+            <span class="ps-icon" style="color: var(--orange); font-size: 18px;">✓</span>
+            <div>
+              <strong style="color: var(--white); display: block; margin-bottom: 4px;">Lose Fat, Build Muscle & Increase Strength</strong>
+              <span style="font-size: 13px; color: var(--muted);">No wasted hours in the gym doing tons of drop sets and super sets. Just efficient, science-backed training you can follow, adjusted to your needs</span>
+            </div>
+          </div>
+  
+          <div class="ps-item" style="padding-top: 12px; border-top: 1px solid var(--border);">
+            <span class="ps-icon" style="color: var(--orange); font-size: 18px;">✓</span>
+            <div>
+              <strong style="color: var(--white); display: block; margin-bottom: 4px;">More Energy For Real Life</strong>
+              <span style="font-size: 13px; color: var(--muted);">Using pharmacology & peptides to switch your biology from being drained and tired to being a completely new man full of energy for your family and your business</span>
+            </div>
+          </div>
+  
+          <div class="ps-item" style="padding-top: 12px; border-top: 1px solid var(--border);">
+            <span class="ps-icon" style="color: var(--orange); font-size: 18px;">✓</span>
+            <div>
+              <strong style="color: var(--white); display: block; margin-bottom: 4px;">Save Time, Reduce Stress</strong>
+              <span style="font-size: 13px; color: var(--muted);">Programs structured for busy schedules — so fitness fits <em style="font-style: italic;">into</em> your life, not <em style="font-style: italic;">on top</em> of it.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+   <!-- Video Testimonials -->
+   <div class="testimonials-section">
+    <div class="testimonials-inner">
+      <div class="sec-label">Client Results</div>
+      <h2 class="sec-title">Hear It <em>From Them.</em></h2>
+
+      <div class="testimonials-grid">
+
+        <!-- VIDEO 1 -->
+        <div class="testimonial-card video">
+          <div class="video-wrapper">
+            <video controls preload="metadata" playsinline>
+              <source src="Video_Testemonials/NOAHTESTEMONIAL.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="test-name">Noah</div>
+            <div class="test-result">Noah Lost a 15lbs of FAT and built muscle all while running business operations for Ekkovision working long hours</div>
+          </div>
+        </div>
+
+        <!-- VIDEO 2 -->
+        <div class="testimonial-card video">
+          <div class="video-wrapper">
+            <video controls preload="metadata" playsinline>
+              <source src="Video_Testemonials/68c2fb657c5969434b61cad8.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="test-name">Shams</div>
+            <div class="test-result">Shams has continously built muscle and lost fat without burning out over the past 1.5 years</div>
+          </div>
+        </div>
+
+        <!-- VIDEO 3 -->
+        <div class="testimonial-card video">
+          <div class="video-wrapper">
+            <video controls preload="metadata" playsinline>
+              <source src="Video_Testemonials/68cc720ef782ba4ad7be993f.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="test-name">Inthisir</div>
+            <div class="test-result">completely transformed his physique and energy levels over the past 6 months while working a full time job</div>
+             </div>
+        </div>
+
+        <!-- VIDEO 4 -->
+        <div class="testimonial-card video">
+          <div class="video-wrapper">
+            <video controls preload="metadata" playsinline>
+              <source src="Video_Testemonials/68cf3d680563401c0a23ab6b.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="test-name">Adriano</div>
+            <div class="test-result">Adriano Quit drinking, lost over 50lbs, built muscle all while working a full time blue collar job</div>
+         
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Transformation Gallery -->
+  <div class="transformations-section">
+    <div class="transformations-inner">
+      <div class="sec-label">Proof in Progress</div>
+      <h2 class="sec-title">Real Results.<br><em>Real People.</em></h2>
+
+      <div class="transform-grid">
+        
+        <!-- TRANSFORMATION 1 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img"> 
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/1.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Shams, Software Engineer</div>
+            <div class="transform-stats">1.5 years</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 2 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/2.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Noah, Business Operations</div>
+            <div class="transform-stats">12 weeks</div>
+          </div>
+        </div>
+
+        
+        <!-- TRANSFORMATION 4 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/4.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Matias, Business Operations</div>
+            <div class="transform-stats">12 weeks</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 5 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/5.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Jeff, Software Engineer</div>
+            <div class="transform-stats">10 months</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 6 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/6.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Hamza, State Trooper</div>
+            <div class="transform-stats">7 months</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 7 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/7.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Gary, Med Student</div>
+            <div class="transform-stats">16 weeks</div>
+          </div>
+        </div>
+
+
+
+        <!-- TRANSFORMATION 9 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/9.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Conan, College Student</div>
+            <div class="transform-stats">5 months</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 10 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/10.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Adriano, Blue Collar</div>
+            <div class="transform-stats">24 weeks</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 11 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/11.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Lance, Entrepreneur</div>
+            <div class="transform-stats">12 weeks</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 12 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/12.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Alex, Entrepreneur</div>
+            <div class="transform-stats">6 months</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 13 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/13.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Parker</div>
+            <div class="transform-stats">16 weeks</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORMATION 14 -->
+        <div class="transform-card">
+          <div class="transform-images">
+            <div class="transform-img">
+                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/14.png" alt="transformation">
+            </div>
+          </div>
+          <div class="transform-details">
+            <div class="transform-name">Jeremy, Mechanical Engineering Student</div>
+            <div class="transform-stats">Peak week</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Program Breakdown -->
+  <div class="program-section">
+    <div class="sec-label">The Program</div>
+    <h2 class="sec-title">What's Included<br>In Your <em>Coaching.</em></h2>
+
+    <div class="program-grid">
+      <div class="program-item">
+        <div class="program-num">01</div>
+        <div>
+          <div class="program-title">Custom Training Program</div>
+          <div class="program-desc">Training programs are structured around your schedule, weak points, available equipment, and travel. In the intial stages of the program, we go through video feedback to ensure that form, execution, and intensity are at the highest level.</div>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">02</div>
+        <div>
+          <div class="program-title">Precision Nutrition Plan</div>
+          <div class="program-desc">Macro targets, meal timing, and restaurant/travel protocols built around your lifestyle, allergies, and preferences. No meal prep prison. Built for your actual life.</div>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">03</div>
+        <div>
+          <div class="program-title">Daily Check-Ins</div>
+          <div class="program-desc">Direct access via text to my personal number. I review your logs, answer questions, and adjust the plan in real-time — responses within 24 hours, every day.</div>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">04</div>
+        <div>
+          <div class="program-title">Weekly Video Reviews</div>
+          <div class="program-desc">Custom Loom videos breaking down your physique updates, weigh-ins, biometrics, bloodwork, and weekly check-in form. You get a full performance analysis every 7 days.</div>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">05</div>
+        <div>
+          <div class="program-title">Performance & Recovery Protocols</div>
+          <div class="program-desc">Peptides, pharmaceuticals, AAS protocols, and functional medicine strategies to maximize health, fix injuries, and optimize performance. We work alongside your doctor's feedback.</div>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">06</div>
+        <div>
+          <div class="program-title">Supplement & Biohacking Guidance</div>
+          <div class="program-desc">What to take, what to skip, what's worth the money. Bloodwork-driven recommendations with zero upsells. Straight answers based on your actual biomarkers.</div>
+        </div>
+      </div>
+    
+      <div class="program-item">
+        <div class="program-num">07</div>
+        <div>
+          <div class="program-title">Bloodwork Analysis</div>
+          <div class="program-desc"> I'll review your bloodwork and provide a detailed analysis of your biomarkers. This includes your testosterone levels, cortisol levels, thyroid levels, and more.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coach Section -->
+  <div class="coach-section">
+    <div class="coach-inner">
+      <div>
+        <div class="coach-photo">
+            <img src="/Users/akibmahdi/TeamAkib_Funnel/Stage_ub_shot.webp" alt="coach">
+        </div>
+      </div>
+      <div>
+        <div class="sec-label">Coach Akib</div>
+        <h2 class="sec-title" style="font-size: clamp(32px,3vw,48px);">Built for<br><em>High Performers.</em></h2>
+        <p class="sec-body" style="margin-bottom: 20px;">
+            Former software engineer at a Fortune 10 company. Certified strength and performance coach with 5 years working with high-performing professionals who refuse to settle for average.
+            I left the corporate grind because I watched too many sharp, driven guys let their health fall apart chasing the next promotion. Now I help them build the physique and energy levels that match their ambition — without sacrificing their career or family time.
+        </p>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="sec-label">Got Questions?</div>
+      <h2 class="sec-title">Frequently Asked<br><em>Questions</em></h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Do you coach enhanced athletes?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <div class="faq-answer-inner">I do coach enhanced athletes! In fact, bloodwork analysis, cycle /peptide protocols is my specialty.</div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Who is this coaching program for?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">This is built for busy professionals — finance, tech, law, consulting, founders — who want to get into the best shape of their life without sacrificing their career. If you're driven, coachable, and ready to invest in yourself, this is for you.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What happens on the strategy call?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We'll break down your current situation, your goals, your timeline, and map out exactly what your transformation looks like. No pressure — just clarity on whether we're the right fit to work together.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How much does the program cost?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Pricing depends on your goals, timeline, and the level of support you need. We'll go over everything on the call so you can make an informed decision. Investment typically ranges from $1,500–$5,000.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            I have a crazy schedule — will this still work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">That's exactly who we built this for. Your training and nutrition are designed around your schedule — not the other way around. Most of our clients work 50–70+ hour weeks and still see incredible results.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How long until I see results?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Most clients notice visible changes within the first 2–3 weeks. Significant transformations typically happen in the 10–16 week range depending on your starting point and goals.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What if I've tried other programs and they didn't work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Most programs fail because they're generic. We build everything custom — your training, your nutrition, your accountability structure — based on your body, your schedule, and your lifestyle. That's why our clients actually stick with it and get results.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I cancel or reschedule my call?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes — you'll receive a confirmation email with options to reschedule. That said, spots are limited. If you cancel, we can't guarantee availability for the same week.</div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="site-footer">
+    © 2026 TA Coaching · Privacy Policy · Disclaimer · Results vary. Testimonials are from real clients.
+  </div>
+
+</div>
+
+
+<script>
+  /* ============================================================
+     PAGE SWITCHER
+  ============================================================ */
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Trigger Calendly on booking page
+    if (id === 'booking') setTimeout(initCalendly, 100);
+
+    // Hide/show progress bar on form page
+    const pb = document.getElementById('sq-progress-bar');
+    const pc = document.getElementById('sq-step-counter');
+    if (pb) {
+      pb.style.display = (id === 'form') ? 'block' : 'none';
+      pc.style.display = (id === 'form') ? 'block' : 'none';
+    }
+  }
+
+  /* ============================================================
+     STEP FORM ENGINE
+  ============================================================ */
+  const TOTAL_STEPS = 9; // steps 0–9 (0 = intro, 9 = complete)
+  let currentStep = 0;
+  let transitioning = false;
+
+  function updateProgress() {
+    // Progress starts at 0 on step 0, reaches 100% at step 9
+    const pct = currentStep === 0 ? 0 : Math.round((currentStep / (TOTAL_STEPS)) * 100);
+    document.getElementById('sq-progress-fill').style.width = pct + '%';
+
+    // Counter: hide on intro & complete
+    const counter = document.getElementById('sq-step-counter');
+    if (currentStep === 0 || currentStep === TOTAL_STEPS) {
+      counter.style.opacity = '0';
+    } else {
+      counter.style.opacity = '1';
+      document.getElementById('sq-current').textContent = currentStep;
+      document.getElementById('sq-total').textContent = TOTAL_STEPS - 1;
+    }
+  }
+
+  function goToStep(next) {
+    if (transitioning) return;
+    if (next < 0 || next > TOTAL_STEPS) return;
+    transitioning = true;
+
+    const prev = document.getElementById('sq-step-' + currentStep);
+    const nextEl = document.getElementById('sq-step-' + next);
+
+    // Exit current
+    prev.classList.remove('state-active');
+    prev.classList.add('state-exit');
+
+    // Enter next (from below if going forward, from above if going back)
+    const goingForward = next > currentStep;
+    const isMobile = window.innerWidth <= 600;
+    const offset = isMobile ? 20 : 28;
+    const translateBase = isMobile ? '-50%' : '-50%';
+    nextEl.style.transform = goingForward
+      ? `translate(-50%, calc(-50% + ${offset}px))`
+      : `translate(-50%, calc(-50% - ${offset}px))`;
+    nextEl.classList.remove('state-exit');
+    nextEl.classList.add('state-enter');
+
+    // Trigger reflow then animate in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextEl.style.transform = '';
+        nextEl.classList.remove('state-enter');
+        nextEl.classList.add('state-active');
+        currentStep = next;
+        updateProgress();
+
+        // Focus first input on new step
+        setTimeout(() => {
+          const inp = nextEl.querySelector('input, textarea, select');
+          if (inp && inp.tagName !== 'SELECT') inp.focus();
+          transitioning = false;
+        }, 350);
+
+        // Clean up exit
+        setTimeout(() => {
+          prev.classList.remove('state-exit');
+          prev.classList.add('state-enter');
+          prev.style.transform = '';
+        }, 600);
+      });
+    });
+  }
+
+  function validateStep(step) {
+    var errEl = document.getElementById('sq-err-' + step);
+    function showErr() {
+      if (errEl) { errEl.classList.add('visible'); setTimeout(function(){ errEl.classList.remove('visible'); }, 2500); }
+    }
+    function shakeInput(el) {
+      el.classList.add('sq-error');
+      setTimeout(function(){ el.classList.remove('sq-error'); }, 500);
+    }
+
+    if (step === 0) return true;
+
+    if (step === 1) {
+      var fn = document.getElementById('sq-fname');
+      var ln = document.getElementById('sq-lname');
+      if (!fn.value.trim() || !ln.value.trim()) {
+        if (!fn.value.trim()) shakeInput(fn);
+        if (!ln.value.trim()) shakeInput(ln);
+        showErr();
+        return false;
+      }
+      return true;
+    }
+
+    if (step === 2) {
+      var em = document.getElementById('sq-email');
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!em.value.trim() || !emailPattern.test(em.value.trim())) {
+        shakeInput(em);
+        showErr();
+        return false;
+      }
+      return true;
+    }
+
+    if (step >= 3 && step <= 7) {
+      var groupIds = { 3: 'sq-industry', 4: 'sq-age', 5: 'sq-goal', 6: 'sq-obstacle', 7: 'sq-invest' };
+      var group = document.getElementById(groupIds[step]);
+      if (!group.querySelector('.sq-choice.selected')) {
+        group.classList.add('sq-error');
+        setTimeout(function(){ group.classList.remove('sq-error'); }, 500);
+        showErr();
+        return false;
+      }
+      return true;
+    }
+
+    if (step === 8) {
+      var why = document.getElementById('sq-why');
+      if (!why.value.trim()) {
+        shakeInput(why);
+        showErr();
+        return false;
+      }
+      return true;
+    }
+
+    return true;
+  }
+
+  function sqNext() {
+    if (!validateStep(currentStep)) return;
+    goToStep(currentStep + 1);
+  }
+
+  function sqBack() {
+    if (currentStep > 0) goToStep(currentStep - 1);
+  }
+
+  function sqSubmit() {
+    if (!validateStep(currentStep)) return;
+    goToStep(9);
+    document.getElementById('sq-progress-fill').style.width = '100%';
+  }
+
+  function sqChoose(el, groupId) {
+    var group = document.getElementById(groupId);
+    group.querySelectorAll('.sq-choice').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    var errEl = group.closest('.sq-step').querySelector('.sq-error-msg');
+    if (errEl) errEl.classList.remove('visible');
+    setTimeout(() => sqNext(), 280);
+  }
+
+  /* Enter key to advance text inputs */
+  document.addEventListener('keydown', (e) => {
+    const page = document.getElementById('page-form');
+    if (!page.classList.contains('active')) return;
+    if (e.key === 'Enter' && currentStep > 0 && currentStep < 8) {
+      e.preventDefault();
+      if (!validateStep(currentStep)) return;
+      sqNext();
+    }
+  });
+
+  /* Init */
+  updateProgress();
+
+  /* ============================================================
+     CALENDLY INIT
+  ============================================================ */
+  // Listen for Calendly booking confirmation — registered once globally
+  window.addEventListener('message', (e) => {
+    if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+      setTimeout(() => {
+        showPage('vsl', document.getElementById('nav-vsl'));
+      }, 1800);
+    }
+  });
+
+  function initCalendly() {
+    const widget = document.getElementById('calendly-widget');
+    const loader = document.getElementById('cal-loader');
+    const banner = document.getElementById('setup-banner');
+
+    if (!widget) return;
+
+    const url = widget.getAttribute('data-calendly-url');
+
+    // If still using placeholder URL, show banner, hide loader
+    if (!url || url === '' || url === 'YOUR_CALENDLY_URL') {
+      if (loader) loader.classList.add('hidden');
+      return;
+    }
+
+    // Real URL — hide banner, show widget + loader
+    if (banner) banner.style.display = 'none';
+    widget.style.display = 'block';
+
+    // Load Calendly script dynamically
+    if (!document.getElementById('calendly-script')) {
+      const script = document.createElement('script');
+      script.id = 'calendly-script';
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.onload = () => {
+        if (window.Calendly) {
+          Calendly.initInlineWidget({
+            url: url,
+            parentElement: widget,
+            prefill: {},
+            utm: {}
+          });
+        }
+        setTimeout(() => {
+          if (loader) loader.classList.add('hidden');
+        }, 1200);
+      };
+      document.head.appendChild(script);
+    } else if (window.Calendly) {
+      // Script already loaded — re-init widget if needed
+      if (!widget.querySelector('iframe')) {
+        Calendly.initInlineWidget({
+          url: url,
+          parentElement: widget,
+          prefill: {},
+          utm: {}
+        });
+      }
+      if (loader) loader.classList.add('hidden');
+    }
+  }
+
+
+  /* ============================================================
+     FAQ TOGGLE
+  ============================================================ */
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
+  }
+
+</script>
+</body>
+</html>
