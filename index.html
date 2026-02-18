@@ -1558,7 +1558,7 @@ async function sqSubmit() {
   window.addEventListener('message', (e) => {
     if (e.data.event && e.data.event === 'calendly.event_scheduled') {
       setTimeout(() => {
-        window.location.href = '/vsl.html';
+        window.location.href = '/vsl';
       }, 1800);
     }
   });
