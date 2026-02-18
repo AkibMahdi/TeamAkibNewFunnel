@@ -2584,8 +2584,8 @@
   /* ============================================================
      PAGE SWITCHER + URL ROUTING
   ============================================================ */
-  const PAGE_ROUTES = { form: '/', booking: '/booking', vsl: '/vsl' };
-  const ROUTE_TO_PAGE = { '/': 'form', '/booking': 'booking', '/vsl': 'vsl' };
+  const PAGE_ROUTES = { form: '/', booking: '/', vsl: '/vsl' };
+  const ROUTE_TO_PAGE = { '/': 'form', '/vsl': 'vsl' };
 
   function showPage(id, btn, pushState) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
