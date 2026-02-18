@@ -1717,6 +1717,7 @@
     <!-- STEP 0: Intro splash -->
     <div class="sq-step state-active" data-step="0" id="sq-step-0">
       <div class="sq-qnum">Application — Limited Spots</div>
+      <p class="sq-city-tag" id="sq-city-tag" style="display:none; font-size:14px; color:var(--orange); font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Your trusted coach in <span id="sq-city"></span></p>
       <h2 class="sq-question">Not Everyone <em>Gets In.</em></h2>
       <p class="sq-hint">We work with driven corporate professionals who are done being average. Answer a few questions honestly — takes under 2 minutes.</p>
       <div class="sq-actions" style="justify-content: flex-start;">
@@ -2843,6 +2844,19 @@
     const item = btn.parentElement;
     item.classList.toggle('open');
   }
+
+  /* ============================================================
+     IP GEOLOCATION — show user's city on intro step
+  ============================================================ */
+  fetch('https://ipapi.co/json/')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.city) {
+        document.getElementById('sq-city').textContent = data.city;
+        document.getElementById('sq-city-tag').style.display = 'block';
+      }
+    })
+    .catch(() => {});
 
 </script>
 </body>
