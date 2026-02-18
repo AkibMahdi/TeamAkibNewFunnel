@@ -1,4 +1,8 @@
 {
   "buildCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/booking", "destination": "/index.html" },
+    { "source": "/vsl", "destination": "/index.html" }
+  ]
 }

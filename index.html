@@ -2582,19 +2582,25 @@
 
 <script>
   /* ============================================================
-     PAGE SWITCHER
+     PAGE SWITCHER + URL ROUTING
   ============================================================ */
-  function showPage(id, btn) {
+  const PAGE_ROUTES = { form: '/', booking: '/booking', vsl: '/vsl' };
+  const ROUTE_TO_PAGE = { '/': 'form', '/booking': 'booking', '/vsl': 'vsl' };
+
+  function showPage(id, btn, pushState) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Trigger Calendly on booking page
+    if (pushState !== false && PAGE_ROUTES[id]) {
+      history.pushState({ page: id }, '', PAGE_ROUTES[id]);
+    }
+
     if (id === 'booking') setTimeout(initCalendly, 100);
 
-    // Hide/show progress bar on form page
     const pb = document.getElementById('sq-progress-bar');
     const pc = document.getElementById('sq-step-counter');
     if (pb) {
@@ -2602,6 +2608,23 @@
       pc.style.display = (id === 'form') ? 'block' : 'none';
     }
   }
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', (e) => {
+    const page = (e.state && e.state.page) || ROUTE_TO_PAGE[window.location.pathname] || 'form';
+    const btn = document.getElementById('nav-' + page);
+    showPage(page, btn, false);
+  });
+
+  // On initial load, check URL and show the right page
+  (function() {
+    const path = window.location.pathname;
+    const page = ROUTE_TO_PAGE[path];
+    if (page && page !== 'form') {
+      const btn = document.getElementById('nav-' + page);
+      showPage(page, btn, false);
+    }
+  })();
 
   /* ============================================================
      STEP FORM ENGINE
