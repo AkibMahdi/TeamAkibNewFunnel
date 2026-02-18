@@ -1499,10 +1499,11 @@
 
 async function sqSubmit() {
   formData.why_text = document.getElementById('sq-why').value;
-  formData.sid = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
-  
-  // Show loading state (optional - you can add a spinner here)
-  console.log('Submitting form data:', formData);
+  const params = new URLSearchParams(window.location.search);
+  formData.sid = params.get('sid') || sessionStorage.getItem('session_uuid') || '';
+  formData.utm_source = params.get('utm_source') || formData.utm_source;
+  formData.utm_medium = params.get('utm_medium') || formData.utm_medium;
+  formData.utm_campaign = params.get('utm_campaign') || formData.utm_campaign;
   
   try {
     // Insert into Supabase
@@ -1645,6 +1646,7 @@ const SUPABASE_URL = 'https://yrvxmkwjehcinnoebzwj.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlydnhta3dqZWhjaW5ub2ViendqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzODkxODIsImV4cCI6MjA4Njk2NTE4Mn0.mIxYYDqw4P5L6XUMRBVJ_oVM6Y1i2I3VrBa3bDHnEZ0';
 const SUPABASE_CLIENT = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // Form data storage
+const _urlParams = new URLSearchParams(window.location.search);
 const formData = {
   first_name: '',
   last_name: '',
@@ -1655,7 +1657,10 @@ const formData = {
   biggest_obstacle: '',
   investment_readiness: '',
   why_text: '',
-  sid: new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || ''
+  sid: _urlParams.get('sid') || sessionStorage.getItem('session_uuid') || '',
+  utm_source: _urlParams.get('utm_source') || '',
+  utm_medium: _urlParams.get('utm_medium') || '',
+  utm_campaign: _urlParams.get('utm_campaign') || ''
 };
 
 
