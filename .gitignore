@@ -1,3 +1,4 @@
 # Original .mov source files (converted to .mp4 for browser compatibility)
 *.mov
 .DS_Store
+.env

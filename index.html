@@ -7,6 +7,7 @@
 <script src="https://fast.wistia.com/player.js" async></script>
 <script src="https://fast.wistia.com/embed/yryb89qho1.js" async type="module"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -2241,7 +2242,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img"> 
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/1.png" alt="transformation">
+                <img src="Transformations/1.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2254,7 +2255,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/2.png" alt="transformation">
+                <img src="Transformations/2.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2268,7 +2269,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/4.png" alt="transformation">
+                <img src="Transformations/4.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2281,7 +2282,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/5.png" alt="transformation">
+                <img src="Transformations/5.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2294,7 +2295,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/6.png" alt="transformation">
+                <img src="Transformations/6.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2307,7 +2308,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/7.png" alt="transformation">
+                <img src="Transformations/7.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2322,7 +2323,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/9.png" alt="transformation">
+                <img src="Transformations/9.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2335,7 +2336,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/10.png" alt="transformation">
+                <img src="Transformations/10.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2348,7 +2349,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/11.png" alt="transformation">
+                <img src="Transformations/11.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2361,7 +2362,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/12.png" alt="transformation">
+                <img src="Transformations/12.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2374,7 +2375,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/13.png" alt="transformation">
+                <img src="Transformations/13.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2387,7 +2388,7 @@
         <div class="transform-card">
           <div class="transform-images">
             <div class="transform-img">
-                <img src="/Users/akibmahdi/TeamAkib_Funnel/Transformations/14.png" alt="transformation">
+                <img src="Transformations/14.png" alt="transformation">
             </div>
           </div>
           <div class="transform-details">
@@ -2463,7 +2464,7 @@
     <div class="coach-inner">
       <div>
         <div class="coach-photo">
-            <img src="/Users/akibmahdi/TeamAkib_Funnel/Stage_ub_shot.webp" alt="coach">
+            <img src="Stage_ub_shot.webp" alt="coach">
         </div>
       </div>
       <div>
@@ -2735,19 +2736,78 @@
   }
 
   function sqNext() {
-    if (!validateStep(currentStep)) return;
-    goToStep(currentStep + 1);
+  // Capture data from current step before advancing
+  const step = currentStep;
+  
+  if (step === 1) {
+    formData.first_name = document.getElementById('sq-fname').value;
+    formData.last_name = document.getElementById('sq-lname').value;
   }
+  else if (step === 2) {
+    formData.email = document.getElementById('sq-email').value;
+  }
+  else if (step === 3) {
+    const selected = document.querySelector('#sq-industry .sq-choice.selected');
+    formData.industry = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 4) {
+    const selected = document.querySelector('#sq-age .sq-choice.selected');
+    formData.age_range = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 5) {
+    const selected = document.querySelector('#sq-goal .sq-choice.selected');
+    formData.primary_goal = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 6) {
+    const selected = document.querySelector('#sq-obstacle .sq-choice.selected');
+    formData.biggest_obstacle = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 7) {
+    const selected = document.querySelector('#sq-invest .sq-choice.selected');
+    formData.investment_readiness = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 8) {
+    formData.why_text = document.getElementById('sq-why').value;
+  }
+  
+  // Advance to next step
+  goToStep(currentStep + 1);
+}
 
   function sqBack() {
     if (currentStep > 0) goToStep(currentStep - 1);
   }
 
-  function sqSubmit() {
-    if (!validateStep(currentStep)) return;
+async function sqSubmit() {
+  // Capture final textarea value
+  formData.why_text = document.getElementById('sq-why').value;
+  
+  // Show loading state (optional - you can add a spinner here)
+  console.log('Submitting form data:', formData);
+  
+  try {
+    // Insert into Supabase
+    const { data, error } = await SUPABASE_CLIENT
+      .from('form_submissions')
+      .insert([formData]);
+    
+    if (error) {
+      console.error('Supabase error:', error);
+      alert('There was an error submitting your application. Please try again.');
+      return;
+    }
+    
+    console.log('Form submitted successfully:', data);
+    
+    // Advance to completion screen
     goToStep(9);
     document.getElementById('sq-progress-fill').style.width = '100%';
+    
+  } catch (err) {
+    console.error('Submission error:', err);
+    alert('There was an error submitting your application. Please try again.');
   }
+}
 
   function sqChoose(el, groupId) {
     var group = document.getElementById(groupId);
@@ -2857,6 +2917,26 @@
       }
     })
     .catch(() => {});
+
+
+//supabase
+//supabase
+// Initialize Supabase
+const SUPABASE_URL = 'https://abcdefgh.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFiY2RlZmdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2...';
+const SUPABASE_CLIENT = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Form data storage
+const formData = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  industry: '',
+  age_range: '',
+  primary_goal: '',
+  biggest_obstacle: '',
+  investment_readiness: '',
+  why_text: ''
+};
 
 </script>
 </body>
