@@ -1647,7 +1647,7 @@ async function sqSubmit() {
   /* ============================================================
      IP GEOLOCATION — show user's city on intro step
   ============================================================ */
-  fetch('https://ipapi.co/json/')
+  fetch('https://get.geojs.io/v1/ip/geo.json')
     .then(r => r.json())
     .then(data => {
       if (data && data.city) {
