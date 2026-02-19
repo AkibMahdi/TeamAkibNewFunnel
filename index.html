@@ -1536,6 +1536,12 @@ async function sqSubmit() {
     
     console.log('Form submitted successfully:', data);
     if (typeof fbq === 'function') fbq('track', 'Lead');
+
+    fetch('https://hook.us2.make.com/tw8xngg0yh2cxbh1md13eab8pube7of3', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    }).catch(() => {});
     
     // Advance to completion screen
     goToStep(9);
