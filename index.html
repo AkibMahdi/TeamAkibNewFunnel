@@ -1547,12 +1547,14 @@ async function sqSubmit() {
     }
     
     console.log('Form submitted successfully:', data);
-    if (typeof fbq === 'function') fbq('track', 'Lead');
+    const eventId = crypto.randomUUID();
+    if (typeof fbq === 'function') fbq('track', 'Lead', {}, { eventID: eventId });
 
+    const webhookPayload = Object.assign({}, formData, { event_id: eventId });
     fetch('https://hook.us2.make.com/tw8xngg0yh2cxbh1md13eab8pube7of3', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(webhookPayload)
     }).catch(() => {});
     
     // Advance to completion screen
