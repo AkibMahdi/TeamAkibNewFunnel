@@ -1035,14 +1035,15 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- STEP 2: Email -->
+    <!-- STEP 2: Email & Phone -->
     <div class="sq-step state-enter" data-step="2" id="sq-step-2">
       <div class="sq-qnum">Question 2</div>
-      <h2 class="sq-question">Your <em>email</em> address?</h2>
+      <h2 class="sq-question">Your <em>contact</em> info?</h2>
       <p class="sq-hint">Where we'll send your confirmation and call details.</p>
       <input type="email" class="sq-input" id="sq-email" placeholder="you@company.com" autocomplete="email">
+      <input type="tel" class="sq-input" id="sq-phone" placeholder="(555) 123-4567" autocomplete="tel" style="margin-top: 12px;">
       <p class="sq-enter-hint">Press <kbd>Enter ↵</kbd> to continue</p>
-      <p class="sq-error-msg" id="sq-err-2">Please enter a valid email address.</p>
+      <p class="sq-error-msg" id="sq-err-2">Please enter a valid email and phone number.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
@@ -1440,9 +1441,16 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     if (step === 2) {
       var em = document.getElementById('sq-email');
+      var ph = document.getElementById('sq-phone');
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var phoneDigits = ph.value.replace(/\D/g, '');
       if (!em.value.trim() || !emailPattern.test(em.value.trim())) {
         shakeInput(em);
+        showErr();
+        return false;
+      }
+      if (!ph.value.trim() || phoneDigits.length < 7 || phoneDigits.length > 15) {
+        shakeInput(ph);
         showErr();
         return false;
       }
@@ -1484,6 +1492,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   }
   else if (step === 2) {
     formData.email = document.getElementById('sq-email').value;
+    formData.phone = document.getElementById('sq-phone').value;
   }
   else if (step === 3) {
     const selected = document.querySelector('#sq-industry .sq-choice.selected');
@@ -1679,6 +1688,7 @@ const formData = {
   first_name: '',
   last_name: '',
   email: '',
+  phone: '',
   industry: '',
   age_range: '',
   primary_goal: '',
