@@ -1738,31 +1738,12 @@ const formData = {
    }
 
 
-   // Get IP address using ipify
-   async function getIPAddress() {
-       try {
-           const response = await fetch('https://api.ipify.org?format=json');
-           const data = await response.json();
-           return data.ip;
-       } catch (error) {
-           console.error('Failed to get IP address:', error);
-           return null;
-       }
-   }
-
-
    // Main tracking function
    async function trackVisitor() {
        try {
            const sessionUUID = getSessionUUID();
            const urlParams = new URLSearchParams(window.location.search);
 
-
-           // Get IP address from ipify
-           const ipAddress = await getIPAddress();
-
-
-           // Prepare tracking data
            const trackingData = {
                uuid: sessionUUID,
                fbc: getCookie('_fbc'),
@@ -1771,8 +1752,7 @@ const formData = {
                gid: getCookie('_gid'),
                page_url: window.location.href,
                referrer: document.referrer,
-               user_agent: navigator.userAgent,
-               ip_address: ipAddress
+               user_agent: navigator.userAgent
            };
 
 
