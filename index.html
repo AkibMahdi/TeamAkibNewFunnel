@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TA Coaching - Application</title>
+<meta name="description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability — built around your schedule, not someone else's template.">
+<meta property="og:title" content="TA Coaching — Apply Now">
+<meta property="og:description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability — built for your life.">
+<meta property="og:image" content="https://www.teamakib.org/og-image.png">
+<meta property="og:url" content="https://www.teamakib.org/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TA Coaching — Apply Now">
+<meta name="twitter:description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability.">
+<meta name="twitter:image" content="https://www.teamakib.org/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -511,6 +521,28 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
   .sq-next .arrow { font-size: 15px; transition: transform 0.2s; }
   .sq-next:hover .arrow { transform: translateX(4px); }
+
+  .sq-next:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .sq-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: sq-spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes sq-spin {
+    to { transform: rotate(360deg); }
+  }
 
   /* Press Enter hint */
   .sq-enter-hint {
@@ -1226,7 +1258,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       <p class="sq-error-msg" id="sq-err-8">Please tell us why you want this.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
-        <button class="sq-next" onclick="sqSubmit()" style="background: var(--orange); padding: 15px 32px;">
+        <button class="sq-next" id="sq-submit-btn" onclick="sqSubmit()" style="background: var(--orange); padding: 15px 32px;">
           Submit Application <span class="arrow">→</span>
         </button>
       </div>
@@ -1540,6 +1572,11 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   }
 
 async function sqSubmit() {
+  const submitBtn = document.getElementById('sq-submit-btn');
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="sq-spinner"></span> Submitting…';
+
   formData.why_text = document.getElementById('sq-why').value;
   const params = new URLSearchParams(window.location.search);
   formData.sid = params.get('sid') || sessionStorage.getItem('session_uuid') || '';
@@ -1548,7 +1585,6 @@ async function sqSubmit() {
   formData.utm_campaign = params.get('utm_campaign') || formData.utm_campaign;
   
   try {
-    // Insert into Supabase
     const { data, error } = await SUPABASE_CLIENT
       .from('form_submissions')
       .insert([formData]);
@@ -1556,6 +1592,8 @@ async function sqSubmit() {
     if (error) {
       console.error('Supabase error:', error);
       alert('There was an error submitting your application. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit Application <span class="arrow">→</span>';
       return;
     }
     
@@ -1570,13 +1608,14 @@ async function sqSubmit() {
       body: JSON.stringify(webhookPayload)
     }).catch(() => {});
     
-    // Advance to completion screen
     goToStep(9);
     document.getElementById('sq-progress-fill').style.width = '100%';
     
   } catch (err) {
     console.error('Submission error:', err);
     alert('There was an error submitting your application. Please try again.');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Application <span class="arrow">→</span>';
   }
 }
 
