@@ -960,7 +960,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     display: block;
   }
 
-  /* Calendly embed side */
+  /* Cal.com embed side */
   .booking-right {
     padding: 0;
     background: var(--black);
@@ -971,22 +971,23 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   }
 
   /* Wrapper that holds the iframe and overlays the dark theme */
-  .calendly-wrap {
+  .cal-wrap {
     flex: 1;
     position: relative;
     min-height: 660px;
   }
 
-  /* The actual Calendly inline widget */
-  .calendly-embed {
+  /* The actual Cal.com inline widget target */
+  .cal-embed {
     width: 100%;
     height: 100%;
     min-height: 660px;
     border: none;
+    overflow: auto;
   }
 
-  /* Loading skeleton shown before Calendly loads */
-  .calendly-loader {
+  /* Loading skeleton shown before Cal.com iframe loads */
+  .cal-loader {
     position: absolute;
     inset: 0;
     display: flex;
@@ -1000,7 +1001,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     z-index: 2;
   }
 
-  .calendly-loader.hidden { opacity: 0; pointer-events: none; }
+  .cal-loader.hidden { opacity: 0; pointer-events: none; }
 
   .loader-spinner {
     width: 36px;
@@ -1019,77 +1020,6 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--muted);
-  }
-
-  /* Setup instruction banner — shown when URL is placeholder */
-  .calendly-setup-banner {
-    background: rgba(255,77,0,0.06);
-    border: 1px dashed rgba(255,77,0,0.3);
-    border-radius: 4px;
-    margin: 32px;
-    padding: 28px;
-    text-align: center;
-  }
-
-  .setup-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
-
-  .setup-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1.5px;
-    color: var(--white);
-    margin-bottom: 10px;
-  }
-
-  .setup-steps {
-    text-align: left;
-    max-width: 380px;
-    margin: 16px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .setup-step {
-    display: flex;
-    gap: 12px;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
-    align-items: flex-start;
-  }
-
-  .setup-step-num {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(255,77,0,0.15);
-    border: 1px solid rgba(255,77,0,0.3);
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .setup-step strong { color: var(--text); }
-
-  .setup-code {
-    display: inline-block;
-    background: var(--dark-3);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 2px 7px;
-    font-size: 12px;
-    font-family: monospace;
-    color: var(--orange);
-    margin-top: 4px;
   }
 
   /* Footer */
@@ -1441,7 +1371,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         <em>Received.</em>
       </h2>
       <p class="sq-complete-sub">Your application is under review. Book your strategy call now — spots are extremely limited.</p>
-      <button class="btn-primary" onclick="showPage('booking', document.getElementById('nav-booking')); setTimeout(function(){ document.getElementById('calendly-widget').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);">
+      <button class="btn-primary" onclick="showPage('booking', document.getElementById('nav-booking')); setTimeout(function(){ document.getElementById('my-cal-inline-ta-coaching-demo').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);">
         Book Your Call Now <span class="btn-arrow">→</span>
       </button>
       <p style="margin-top: 16px; font-size: 12px; color: var(--muted);">🔒 Your answers are private and reviewed by our team only.</p>
@@ -1534,22 +1464,21 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- RIGHT: Calendly Embed -->
+    <!-- RIGHT: Cal.com Embed -->
     <div class="booking-right">
-      <div class="calendly-wrap">
+      <div class="cal-wrap">
 
-        <!-- Loading spinner shown while Calendly iframe loads -->
-        <div class="calendly-loader" id="cal-loader">
+        <!-- Loading spinner shown while Cal.com iframe loads -->
+        <div class="cal-loader" id="cal-loader">
           <div class="loader-spinner"></div>
           <div class="loader-text">Loading Calendar...</div>
         </div>
         <div
-          class="calendly-embed"
-          id="calendly-widget"
-          data-calendly-url="https://calendly.com/akibmahdi1/booking-page?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0f0f0f&text_color=e8e8e8&primary_color=FF4D00"
+          class="cal-embed"
+          id="my-cal-inline-ta-coaching-demo"
+          data-cal-link="team-akib-coaching/ta-coaching-demo"
+          data-cal-namespace="ta-coaching-demo"
           style="display:none;">
-        </div>
-          
         </div>
 
       </div>
@@ -1573,7 +1502,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     if (btn) btn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (id === 'booking') setTimeout(initCalendly, 100);
+    if (id === 'booking') setTimeout(initCal, 100);
 
     const pb = document.getElementById('sq-progress-bar');
     const pc = document.getElementById('sq-step-counter');
@@ -1843,75 +1772,91 @@ async function sqSubmit() {
   updateProgress();
 
   /* ============================================================
-     CALENDLY INIT
+     CAL.COM INIT
   ============================================================ */
-  // Listen for Calendly booking confirmation — registered once globally
-  window.addEventListener('message', (e) => {
-    if (e.data.event && e.data.event === 'calendly.event_scheduled') {
-      if (typeof fbq === 'function') fbq('track', 'Schedule');
-      setTimeout(() => {
-        const sid = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
-        window.location.href = sid ? '/vsl?sid=' + encodeURIComponent(sid) : '/vsl';
-      }, 1800);
-    }
-  });
+  const CAL_NAMESPACE = 'ta-coaching-demo';
+  const CAL_LINK = 'team-akib-coaching/ta-coaching-demo';
 
-  function initCalendly() {
-    const widget = document.getElementById('calendly-widget');
+  function initCal() {
+    const widget = document.getElementById('my-cal-inline-ta-coaching-demo');
     const loader = document.getElementById('cal-loader');
-    const banner = document.getElementById('setup-banner');
-
     if (!widget) return;
 
-    const url = widget.getAttribute('data-calendly-url');
-
-    // If still using placeholder URL, show banner, hide loader
-    if (!url || url === '' || url === 'YOUR_CALENDLY_URL') {
+    // Guard against double-init when user re-navigates to booking page
+    if (widget.dataset.calInited === 'true') {
       if (loader) loader.classList.add('hidden');
       return;
     }
-
-    // Real URL — hide banner, show widget + loader
-    if (banner) banner.style.display = 'none';
+    widget.dataset.calInited = 'true';
     widget.style.display = 'block';
 
-    // Load Calendly script dynamically
-    const sid = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
-    const calendlyUrl = sid ? url + (url.includes('?') ? '&' : '?') + 'sid=' + encodeURIComponent(sid) : url;
-    const prefill = {
-      name: (formData.first_name + ' ' + formData.last_name).trim(),
-      email: formData.email
-    };
-
-    if (!document.getElementById('calendly-script')) {
-      const script = document.createElement('script');
-      script.id = 'calendly-script';
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.onload = () => {
-        if (window.Calendly) {
-          Calendly.initInlineWidget({
-            url: calendlyUrl,
-            parentElement: widget,
-            prefill: prefill,
-            utm: {}
-          });
+    // Bootstrap the Cal embed loader (idempotent across calls)
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {}; cal.q = cal.q || [];
+          d.head.appendChild(d.createElement('script')).src = A;
+          cal.loaded = true;
         }
-        setTimeout(() => {
-          if (loader) loader.classList.add('hidden');
-        }, 1200);
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1]; api.q = api.q || [];
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ['initNamespace', namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
       };
-      document.head.appendChild(script);
-    } else if (window.Calendly) {
-      if (!widget.querySelector('iframe')) {
-        Calendly.initInlineWidget({
-          url: calendlyUrl,
-          parentElement: widget,
-          prefill: prefill,
-          utm: {}
-        });
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+    Cal('init', CAL_NAMESPACE, { origin: 'https://app.cal.com' });
+
+    const sid = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
+    const fullName = (formData.first_name + ' ' + formData.last_name).trim();
+
+    Cal.ns[CAL_NAMESPACE]('inline', {
+      elementOrSelector: '#my-cal-inline-ta-coaching-demo',
+      config: {
+        layout: 'month_view',
+        useSlotsViewOnSmallScreen: 'true',
+        theme: 'dark',
+        name: fullName,
+        email: formData.email || '',
+        'metadata[sid]': sid
+      },
+      calLink: CAL_LINK,
+    });
+
+    Cal.ns[CAL_NAMESPACE]('ui', {
+      theme: 'dark',
+      cssVarsPerTheme: {
+        light: { 'cal-brand': '#FF4D00' },
+        dark: { 'cal-brand': '#FF4D00' }
+      },
+      hideEventTypeDetails: false,
+      layout: 'month_view'
+    });
+
+    // Booking confirmation → fire Meta Pixel + redirect to VSL
+    Cal.ns[CAL_NAMESPACE]('on', {
+      action: 'bookingSuccessful',
+      callback: () => {
+        if (typeof fbq === 'function') fbq('track', 'Schedule');
+        setTimeout(() => {
+          const s = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
+          window.location.href = s ? '/vsl?sid=' + encodeURIComponent(s) : '/vsl';
+        }, 1800);
       }
-      if (loader) loader.classList.add('hidden');
-    }
+    });
+
+    // Hide the loading spinner once the iframe has had time to mount
+    setTimeout(() => { if (loader) loader.classList.add('hidden'); }, 1400);
   }
 
 
