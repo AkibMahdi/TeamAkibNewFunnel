@@ -539,6 +539,21 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
   .sq-choices.cols-1 { grid-template-columns: 1fr; }
 
+  .sq-choices.sq-scale {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+  }
+  .sq-scale-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding: 18px 0;
+  }
+
   .sq-choice {
     display: flex;
     align-items: center;
@@ -1147,6 +1162,8 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     .sq-hint { font-size: 14px; margin-bottom: 24px; }
     .sq-input { font-size: 18px; padding: 10px 0; }
     .sq-choices { grid-template-columns: 1fr; gap: 8px; }
+    .sq-choices.sq-scale { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .sq-scale-btn { font-size: 18px; padding: 14px 0; }
     .sq-choice { padding: 14px 16px; font-size: 14px; }
     .sq-actions { margin-top: 24px; flex-wrap: wrap; gap: 12px; }
     .sq-next { flex: 1; justify-content: center; padding: 15px 20px; font-size: 12px; }
@@ -1260,47 +1277,9 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- STEP 3: Industry -->
+    <!-- STEP 3: Age -->
     <div class="sq-step state-enter" data-step="3" id="sq-step-3">
       <div class="sq-qnum">Question 3</div>
-      <h2 class="sq-question">What's your <em>industry?</em></h2>
-      <p class="sq-hint">We tailor the program to your actual schedule and lifestyle.</p>
-      <div class="sq-choices" id="sq-industry">
-        <div class="sq-choice" data-val="finance" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">A</span> Finance / Banking
-        </div>
-        <div class="sq-choice" data-val="tech" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">B</span> Tech / Software
-        </div>
-        <div class="sq-choice" data-val="law" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">C</span> Law / Legal
-        </div>
-        <div class="sq-choice" data-val="consulting" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">D</span> Consulting
-        </div>
-        <div class="sq-choice" data-val="exec" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">E</span> Executive / C-Suite
-        </div>
-        <div class="sq-choice" data-val="founder" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">F</span> Entrepreneur / Founder
-        </div>
-        <div class="sq-choice" data-val="sales" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">G</span> Sales / Business Dev
-        </div>
-        <div class="sq-choice" data-val="other" onclick="sqChoose(this, 'sq-industry')">
-          <span class="sq-choice-key">H</span> Other
-        </div>
-      </div>
-      <p class="sq-error-msg" id="sq-err-3">Please select an option.</p>
-      <div class="sq-actions">
-        <button class="sq-back" onclick="sqBack()">← Back</button>
-        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
-      </div>
-    </div>
-
-    <!-- STEP 4: Age -->
-    <div class="sq-step state-enter" data-step="4" id="sq-step-4">
-      <div class="sq-qnum">Question 4</div>
       <h2 class="sq-question">How old <em>are you?</em></h2>
       <p class="sq-hint">Your training and nutrition protocols are calibrated to your age.</p>
       <div class="sq-choices" id="sq-age">
@@ -1326,16 +1305,16 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
           <span class="sq-choice-key">F</span> 50+
         </div> -->
       </div>
-      <p class="sq-error-msg" id="sq-err-4">Please select an option.</p>
+      <p class="sq-error-msg" id="sq-err-3">Please select an option.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
       </div>
     </div>
 
-    <!-- STEP 5: Primary Goal -->
-    <div class="sq-step state-enter" data-step="5" id="sq-step-5">
-      <div class="sq-qnum">Question 5</div>
+    <!-- STEP 4: Primary Goal -->
+    <div class="sq-step state-enter" data-step="4" id="sq-step-4">
+      <div class="sq-qnum">Question 4</div>
       <h2 class="sq-question">What's your <em>primary goal?</em></h2>
       <p class="sq-hint">Be honest. There are no wrong answers here.</p>
       <div class="sq-choices" id="sq-goal">
@@ -1355,16 +1334,16 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
             <span class="sq-choice-key">e</span> Show prep / Bodybuilding
           </div>
       </div>
-      <p class="sq-error-msg" id="sq-err-5">Please select an option.</p>
+      <p class="sq-error-msg" id="sq-err-4">Please select an option.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
       </div>
     </div>
 
-    <!-- STEP 6: Obstacle -->
-    <div class="sq-step state-enter" data-step="6" id="sq-step-6">
-      <div class="sq-qnum">Question 6</div>
+    <!-- STEP 5: Obstacle -->
+    <div class="sq-step state-enter" data-step="5" id="sq-step-5">
+      <div class="sq-qnum">Question 5</div>
       <h2 class="sq-question">Biggest obstacle <em>right now?</em></h2>
       <p class="sq-hint">What's kept you from getting where you want to be?</p>
       <div class="sq-choices" id="sq-obstacle">
@@ -1381,7 +1360,31 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
           <span class="sq-choice-key">D</span> Accountability / consistency
         </div>
       </div>
-      <p class="sq-error-msg" id="sq-err-6">Please select an option.</p>
+      <p class="sq-error-msg" id="sq-err-5">Please select an option.</p>
+      <div class="sq-actions">
+        <button class="sq-back" onclick="sqBack()">← Back</button>
+        <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Commitment scale 1–10 -->
+    <div class="sq-step state-enter" data-step="6" id="sq-step-6">
+      <div class="sq-qnum">Question 6</div>
+      <h2 class="sq-question">On a scale of <em>1–10</em>, how committed are you to investing in yourself right now if we can get you to your health &amp; fitness goals?</h2>
+      <p class="sq-hint">Tap a number — there are no right or wrong answers, just be honest.</p>
+      <div class="sq-choices sq-scale" id="sq-commitment">
+        <div class="sq-choice sq-scale-btn" data-val="1"  onclick="sqChoose(this, 'sq-commitment')">1</div>
+        <div class="sq-choice sq-scale-btn" data-val="2"  onclick="sqChoose(this, 'sq-commitment')">2</div>
+        <div class="sq-choice sq-scale-btn" data-val="3"  onclick="sqChoose(this, 'sq-commitment')">3</div>
+        <div class="sq-choice sq-scale-btn" data-val="4"  onclick="sqChoose(this, 'sq-commitment')">4</div>
+        <div class="sq-choice sq-scale-btn" data-val="5"  onclick="sqChoose(this, 'sq-commitment')">5</div>
+        <div class="sq-choice sq-scale-btn" data-val="6"  onclick="sqChoose(this, 'sq-commitment')">6</div>
+        <div class="sq-choice sq-scale-btn" data-val="7"  onclick="sqChoose(this, 'sq-commitment')">7</div>
+        <div class="sq-choice sq-scale-btn" data-val="8"  onclick="sqChoose(this, 'sq-commitment')">8</div>
+        <div class="sq-choice sq-scale-btn" data-val="9"  onclick="sqChoose(this, 'sq-commitment')">9</div>
+        <div class="sq-choice sq-scale-btn" data-val="10" onclick="sqChoose(this, 'sq-commitment')">10</div>
+      </div>
+      <p class="sq-error-msg" id="sq-err-6">Please select a number.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
@@ -1390,24 +1393,24 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     <div class="sq-step state-enter" data-step="7" id="sq-step-7">
         <div class="sq-qnum">Question 7</div>
-        <h2 class="sq-question">Are you ready to <em>invest</em> in yourself?</h2>
+        <h2 class="sq-question">During the call, if you are confident that my program is the answer to your goals. How much would you have saved up to invest today? (USD)</h2>
         <p class="sq-hint">Be honest. This helps us match you to the right program structure.</p>
         <div class="sq-choices cols-1" id="sq-invest">
           <div class="sq-choice" data-val="ready" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">A</span>
-            <span>Yes — I'm ready. I can invest <strong style="color:var(--text)">$1,500–$2,500</strong> to get this handled</span>
+            <span> <strong style="color:var(--text)">I have$0-$1000 saved up</strong> </span>
           </div>
           <div class="sq-choice" data-val="if-right" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">B</span>
-            <span>Yes — if it's the right fit, <strong style="color:var(--text)">$2,500–$5,000</strong> is on the table</span>
+            <span><strong style="color:var(--text)">I have$1000-$3000 saved up</strong> </span>
           </div>
           <div class="sq-choice" data-val="maybe" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">C</span>
-            <span>Maybe — I'd need to know more before committing to <strong style="color:var(--text)">$1,500+</strong></span>
+            <span><strong style="color:var(--text)">I have$3000-$5000 saved up</strong></span>
           </div>
           <div class="sq-choice" data-val="no" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">D</span>
-            <span>Not right now — budget isn't there yet</span>
+            <span><strong style="color:var(--text)">I have $5000+ saved up</strong></span>
           </div>
         </div>
         <p class="sq-error-msg" id="sq-err-7">Please select an option.</p>
@@ -1417,14 +1420,20 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         </div>
       </div>
 
-    <!-- STEP 8: Why -->
+    <!-- STEP 8: Show-up confirmation -->
     <div class="sq-step state-enter" data-step="8" id="sq-step-8">
       <div class="sq-qnum">Question 8 — Final</div>
-      <h2 class="sq-question">Why do you <em>want this?</em></h2>
-      <p class="sq-hint">Be specific. What does being in the best shape of your life mean for you — personally and professionally?</p>
-      <textarea class="sq-textarea" id="sq-why" placeholder="The more specific you are, the better we can serve you..."></textarea>
-      <p class="sq-enter-hint" style="margin-top: 8px;">Don't hold back. We read every answer.</p>
-      <p class="sq-error-msg" id="sq-err-8">Please tell us why you want this.</p>
+      <h2 class="sq-question">Confirm you understand that if you <em>DO NOT show up</em> to the call without notice — any calls you book in the future will be cancelled.</h2>
+      <p class="sq-hint">We protect our coaches' time. Please confirm before submitting.</p>
+      <div class="sq-choices cols-1" id="sq-confirm">
+        <div class="sq-choice" data-val="yes" onclick="sqChoose(this, 'sq-confirm')">
+          <span class="sq-choice-key">A</span> Yes — I understand
+        </div>
+        <div class="sq-choice" data-val="no" onclick="sqChoose(this, 'sq-confirm')">
+          <span class="sq-choice-key">B</span> No
+        </div>
+      </div>
+      <p class="sq-error-msg" id="sq-err-8">Please select Yes or No.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" id="sq-submit-btn" onclick="sqSubmit()" style="background: var(--orange); padding: 15px 32px;">
@@ -1702,8 +1711,15 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       return true;
     }
 
-    if (step >= 3 && step <= 7) {
-      var groupIds = { 3: 'sq-industry', 4: 'sq-age', 5: 'sq-goal', 6: 'sq-obstacle', 7: 'sq-invest' };
+    if (step >= 3 && step <= 8) {
+      var groupIds = {
+        3: 'sq-age',
+        4: 'sq-goal',
+        5: 'sq-obstacle',
+        6: 'sq-commitment',
+        7: 'sq-invest',
+        8: 'sq-confirm'
+      };
       var group = document.getElementById(groupIds[step]);
       if (!group.querySelector('.sq-choice.selected')) {
         group.classList.add('sq-error');
@@ -1714,23 +1730,14 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       return true;
     }
 
-    if (step === 8) {
-      var why = document.getElementById('sq-why');
-      if (!why.value.trim()) {
-        shakeInput(why);
-        showErr();
-        return false;
-      }
-      return true;
-    }
-
     return true;
   }
 
   function sqNext() {
-  // Capture data from current step before advancing
   const step = currentStep;
-  
+
+  if (!validateStep(step)) return;
+
   if (step === 1) {
     formData.first_name = document.getElementById('sq-fname').value;
     formData.last_name = document.getElementById('sq-lname').value;
@@ -1740,27 +1747,28 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     formData.phone = document.getElementById('sq-phone').value;
   }
   else if (step === 3) {
-    const selected = document.querySelector('#sq-industry .sq-choice.selected');
-    formData.industry = selected ? selected.getAttribute('data-val') : '';
-  }
-  else if (step === 4) {
     const selected = document.querySelector('#sq-age .sq-choice.selected');
     formData.age_range = selected ? selected.getAttribute('data-val') : '';
   }
-  else if (step === 5) {
+  else if (step === 4) {
     const selected = document.querySelector('#sq-goal .sq-choice.selected');
     formData.primary_goal = selected ? selected.getAttribute('data-val') : '';
   }
-  else if (step === 6) {
+  else if (step === 5) {
     const selected = document.querySelector('#sq-obstacle .sq-choice.selected');
     formData.biggest_obstacle = selected ? selected.getAttribute('data-val') : '';
+  }
+  else if (step === 6) {
+    const selected = document.querySelector('#sq-commitment .sq-choice.selected');
+    formData.commitment_score = selected ? selected.getAttribute('data-val') : '';
   }
   else if (step === 7) {
     const selected = document.querySelector('#sq-invest .sq-choice.selected');
     formData.investment_readiness = selected ? selected.getAttribute('data-val') : '';
   }
   else if (step === 8) {
-    formData.why_text = document.getElementById('sq-why').value;
+    const selected = document.querySelector('#sq-confirm .sq-choice.selected');
+    formData.show_up_confirmation = selected ? selected.getAttribute('data-val') : '';
   }
   
   // Advance to next step
@@ -1774,10 +1782,15 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 async function sqSubmit() {
   const submitBtn = document.getElementById('sq-submit-btn');
   if (submitBtn.disabled) return;
+
+  if (!validateStep(8)) return;
+
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<span class="sq-spinner"></span> Submitting…';
 
-  formData.why_text = document.getElementById('sq-why').value;
+  const confirmSel = document.querySelector('#sq-confirm .sq-choice.selected');
+  formData.show_up_confirmation = confirmSel ? confirmSel.getAttribute('data-val') : '';
+
   const params = new URLSearchParams(window.location.search);
   formData.sid = params.get('sid') || sessionStorage.getItem('session_uuid') || '';
   formData.utm_source = params.get('utm_source') || formData.utm_source;
@@ -1825,6 +1838,7 @@ async function sqSubmit() {
     el.classList.add('selected');
     var errEl = group.closest('.sq-step').querySelector('.sq-error-msg');
     if (errEl) errEl.classList.remove('visible');
+    if (currentStep === 8) return;
     setTimeout(() => sqNext(), 280);
   }
 
@@ -1943,12 +1957,12 @@ const formData = {
   last_name: '',
   email: '',
   phone: '',
-  industry: '',
   age_range: '',
   primary_goal: '',
   biggest_obstacle: '',
+  commitment_score: '',
   investment_readiness: '',
-  why_text: '',
+  show_up_confirmation: '',
   sid: _urlParams.get('sid') || sessionStorage.getItem('session_uuid') || '',
   utm_source: _urlParams.get('utm_source') || '',
   utm_medium: _urlParams.get('utm_medium') || '',
