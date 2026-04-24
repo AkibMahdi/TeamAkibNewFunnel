@@ -2,3 +2,5 @@
 *.mov
 .DS_Store
 .env
+.vercel
+.env*.local
