@@ -2120,11 +2120,41 @@ async function sqSubmit() {
   ============================================================ */
   // Listen for Calendly booking confirmation — registered once globally
   window.addEventListener('message', (e) => {
-    if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+    if (e.data && e.data.event === 'calendly.event_scheduled') {
       if (typeof fbq === 'function') fbq('track', 'Schedule');
+
+      // Persist the funnel form data so the /vsl page can greet by name
+      // even if Calendly doesn't pass invitee_full_name through.
+      try {
+        sessionStorage.setItem('formData', JSON.stringify(formData));
+      } catch (_) { /* ignore */ }
+
+      // Extract invitee + event UUIDs from the Calendly postMessage payload.
+      // Calendly sends URIs like:
+      //   payload.invitee.uri = https://api.calendly.com/scheduled_events/EVT/invitees/INV
+      //   payload.event.uri   = https://api.calendly.com/scheduled_events/EVT
+      var inviteeUuid = '';
+      var eventUuid = '';
+      try {
+        var p = e.data.payload || {};
+        if (p.invitee && p.invitee.uri) {
+          var parts = p.invitee.uri.split('/');
+          inviteeUuid = parts[parts.length - 1] || '';
+        }
+        if (p.event && p.event.uri) {
+          var ep = p.event.uri.split('/');
+          eventUuid = ep[ep.length - 1] || '';
+        }
+      } catch (_) { /* ignore */ }
+
       setTimeout(() => {
         const sid = new URLSearchParams(window.location.search).get('sid') || sessionStorage.getItem('session_uuid') || '';
-        window.location.href = sid ? '/vsl?sid=' + encodeURIComponent(sid) : '/vsl';
+        const qs = new URLSearchParams();
+        if (sid)         qs.set('sid', sid);
+        if (inviteeUuid) qs.set('invitee_uuid', inviteeUuid);
+        if (eventUuid)   qs.set('event_type_uuid', eventUuid);
+        const query = qs.toString();
+        window.location.href = query ? '/vsl?' + query : '/vsl';
       }, 1800);
     }
   });
