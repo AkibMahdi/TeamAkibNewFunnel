@@ -34,8 +34,6 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<script src="https://fast.wistia.com/player.js" async></script>
-<script src="https://fast.wistia.com/embed/yryb89qho1.js" async type="module"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -298,14 +296,14 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   }
   .sq-error-msg.visible { opacity: 1; }
 
-  /* Intro VSL */
+  /* Intro hero */
   .intro-headline {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 6vw, 64px);
+    font-size: clamp(40px, 7vw, 72px);
     line-height: 0.95;
     letter-spacing: 2px;
     color: var(--white);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     text-align: center;
   }
 
@@ -314,152 +312,322 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     color: var(--orange);
   }
 
-  .intro-vsl-wrap {
-    width: 100%;
-    max-width: 560px;
-    margin: 0 auto 24px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .intro-vsl-wrap wistia-player {
-    display: block;
-    width: 100%;
-  }
-
-  wistia-player[media-id='yryb89qho1']:not(:defined) {
-    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/yryb89qho1/swatch');
-    display: block;
-    filter: blur(5px);
-    padding-top: 56.25%;
-  }
-
-  /* Transformations gallery */
-  .form-transformations {
-    display: none;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 0 60px;
-    position: relative;
-  }
-
-  .form-transformations.visible {
-    display: block;
-  }
-
-  .form-tf-header {
-    position: relative;
-    text-align: center;
-    padding: 48px 24px 40px;
-    margin-top: -160px;
-    background: linear-gradient(180deg, transparent 0%, rgba(255,77,0,0.04) 50%, transparent 100%);
-  }
-
-  .form-tf-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--orange), transparent);
-  }
-
-  .form-tf-scroll-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10px;
+  .sq-city-tag {
+    font-size: 12px;
+    color: var(--orange);
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 16px;
-    animation: tf-pulse 2s ease-in-out infinite;
-  }
-
-  .form-tf-scroll-hint .arrow-down {
-    font-size: 14px;
-    animation: tf-bounce 1.5s ease-in-out infinite;
-  }
-
-  @keyframes tf-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
-  }
-
-  @keyframes tf-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .form-tf-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 72px);
-    letter-spacing: 3px;
-    color: var(--white);
     text-align: center;
-    margin-bottom: 8px;
-    line-height: 0.95;
+    margin: 0 auto 18px;
   }
 
-  .form-tf-title em {
+  .sq-subhead {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    text-align: center;
+    margin: 0 auto 28px;
+    max-width: 560px;
+  }
+
+  .sq-subhead strong {
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  /* ============================================
+     LANDING SECTIONS (below form)
+  ============================================ */
+  .lp-sections {
+    position: relative;
+    z-index: 1;
+    padding: 0 0 80px;
+    background: var(--black);
+  }
+
+  .lp-eyebrow {
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+
+  .lp-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 0.98;
+    margin-bottom: 14px;
+  }
+
+  .lp-title em {
     font-style: normal;
     color: var(--orange);
   }
 
-  .form-tf-subtitle {
+  .lp-subtitle {
     font-size: 15px;
     color: var(--muted);
-    text-align: center;
-    margin-bottom: 40px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-
-  .form-tf-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-    max-width: 900px;
+    line-height: 1.65;
+    max-width: 620px;
     margin: 0 auto;
-    padding: 0 24px;
   }
 
-  .form-tf-item {
+  /* Quick proof strip */
+  .lp-strip {
+    padding: 32px 24px 56px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .lp-strip-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .lp-strip-item {
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
   }
-
-  .form-tf-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 32px rgba(255,77,0,0.15);
+  .lp-strip-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255,77,0,0.15);
   }
-
-  .form-tf-item img {
+  .lp-strip-item img {
     width: 100%;
     display: block;
   }
 
+  /* Mechanism */
+  .lp-mech {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .lp-mech-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .lp-mech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .lp-mech-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 26px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .lp-mech-card:hover {
+    border-color: rgba(255,77,0,0.4);
+    transform: translateY(-3px);
+  }
+  .lp-mech-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--orange);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+  .lp-mech-h {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .lp-mech-p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    opacity: 0.85;
+  }
+
+  /* Transformations grid (full) */
+  .lp-tf {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .lp-tf-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .lp-tf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .lp-tf-item {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .lp-tf-item:hover {
+    transform: scale(1.025);
+    box-shadow: 0 8px 28px rgba(255,77,0,0.15);
+  }
+  .lp-tf-item img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Video testimonials */
+  .lp-vt {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .lp-vt-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .lp-vt-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .lp-vt-item {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #000;
+    aspect-ratio: 16/9;
+  }
+  .lp-vt-item video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #000;
+  }
+
+  /* Secondary CTA */
+  .lp-cta {
+    text-align: center;
+    padding: 80px 24px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .lp-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+  .lp-cta-title em {
+    font-style: normal;
+    color: var(--orange);
+  }
+  .lp-cta-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .lp-cta-btn {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .lp-cta-btn:hover {
+    background: var(--orange-light);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(255,77,0,0.35);
+  }
+  .lp-cta-fine {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* Sticky mobile CTA */
+  .lp-sticky-cta {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .lp-sticky-cta {
+      display: inline-flex;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 95;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(255,77,0,0.35), 0 2px 6px rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(120%);
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .lp-sticky-cta.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .lp-sticky-cta:active {
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .lp-mech-grid { grid-template-columns: 1fr; }
+    .lp-vt-grid { grid-template-columns: 1fr; }
+    .lp-strip-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 600px) {
-    .form-tf-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 0 16px;
-    }
-    .form-tf-header {
-      padding: 36px 16px 32px;
-      margin-top: -120px;
-    }
-    .form-tf-title {
-      font-size: clamp(32px, 10vw, 52px);
-    }
+    .lp-tf-grid { grid-template-columns: 1fr; }
+    .lp-mech { padding: 48px 18px; }
+    .lp-tf { padding: 48px 18px; }
+    .lp-vt { padding: 48px 18px; }
+    .lp-strip { padding: 24px 18px 40px; }
+    .lp-cta { padding: 64px 18px 18px; }
+    .lp-mech-card { padding: 22px 20px; }
   }
 
   /* Question number tag */
@@ -1225,18 +1393,16 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   <!-- Stage: all steps live here -->
   <div class="sq-stage" id="sq-stage">
 
-    <!-- STEP 0: Intro splash -->
+    <!-- STEP 0: Hero -->
     <div class="sq-step state-active" data-step="0" id="sq-step-0">
-      <p class="sq-city-tag" id="sq-city-tag" style="display:none; font-size:14px; color:var(--orange); font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px;">Your trusted coach in <span id="sq-city"></span></p>
-      <h1 class="intro-headline">Elite Physique Coaching<br>For <em>Busy Professionals</em></h1>
-      <div class="intro-vsl-wrap">
-        <wistia-player media-id="yryb89qho1" aspect="1.7777777777777777"></wistia-player>
-      </div>
+      <p class="sq-city-tag" id="sq-city-tag">For serious lifters<span id="sq-city-suffix"></span></p>
+      <h1 class="intro-headline">You already lift.<br><em>Now optimize everything.</em></h1>
+      <p class="sq-subhead">Stage-grade conditioning. Bloodwork dialed to the decimal. Honest enhancement strategy. Joint, CNS &amp; brain optimization most coaches don't even know exists — for men who are already in the gym and ready to <strong>stop leaving leverage on the table</strong>.</p>
       <div class="sq-qnum">Application — Limited Spots</div>
-      <p class="sq-hint">We work with driven corporate professionals who are done being average. Answer a few questions honestly — takes under 2 minutes.</p>
+      <p class="sq-hint">Two-minute qualifier. Every answer is reviewed personally before we book.</p>
       <div class="sq-actions" style="justify-content: center;">
         <button class="sq-next" onclick="sqNext()">
-          Start Application <span class="arrow">→</span>
+          Take the Qualifier <span class="arrow">→</span>
         </button>
       </div>
     </div>
@@ -1458,30 +1624,119 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
   </div><!-- end sq-stage -->
 
-  <!-- Transformations gallery (visible during form steps 1-8) -->
-  <div class="form-transformations" id="form-transformations">
-    <div class="form-tf-header">
-      <div class="form-tf-scroll-hint"><span class="arrow-down">↓</span> SCROLL TO SEE PROOF <span class="arrow-down">↓</span></div>
-      <h2 class="form-tf-title">These Guys Were<br><em>Exactly Where You Are</em></h2>
-      <p class="form-tf-subtitle">Real clients. Real transformations. No filters, no angles, no BS — just consistency and the right system.</p>
+  <!-- ============================================
+       LANDING SECTIONS (always visible below form)
+  ============================================ -->
+  <section class="lp-sections" id="lp-sections">
+
+    <!-- Quick proof strip: 4 hero transformations -->
+    <div class="lp-strip">
+      <div class="lp-strip-row">
+        <div class="lp-strip-item"><img src="Transformations/1.png" alt="Client physique optimization" loading="lazy"></div>
+        <div class="lp-strip-item"><img src="Transformations/3.png" alt="Client physique optimization" loading="lazy"></div>
+        <div class="lp-strip-item"><img src="Transformations/7.png" alt="Client physique optimization" loading="lazy"></div>
+        <div class="lp-strip-item"><img src="Transformations/12.png" alt="Client physique optimization" loading="lazy"></div>
+      </div>
     </div>
-    <div class="form-tf-grid">
-      <div class="form-tf-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/2.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/3.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/4.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/5.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/6.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/7.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/8.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/9.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/10.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/11.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/12.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/13.png" alt="Client transformation" loading="lazy"></div>
-      <div class="form-tf-item"><img src="Transformations/14.png" alt="Client transformation" loading="lazy"></div>
+
+    <!-- Mechanism: Why it works -->
+    <div class="lp-mech">
+      <div class="lp-mech-header">
+        <div class="lp-eyebrow">The Approach</div>
+        <h2 class="lp-title">Most coaches sell <em>low-hanging fruit.</em><br>We optimize the system.</h2>
+        <p class="lp-subtitle">If you've been training seriously for years, you don't need another beginner program or another "just hit your macros" lecture. You need the ceiling raised — and that means working on every variable, not just the obvious ones.</p>
+      </div>
+
+      <div class="lp-mech-grid">
+        <div class="lp-mech-card">
+          <div class="lp-mech-num">01</div>
+          <h3 class="lp-mech-h">Bloodwork drives everything.</h3>
+          <p class="lp-mech-p">Quarterly labs — full hormone panels, lipids, inflammation markers, organ health, micronutrients — dictate every adjustment to training, nutrition, and supplementation. No guessing. No "feel it out." Measured, then changed.</p>
+        </div>
+        <div class="lp-mech-card">
+          <div class="lp-mech-num">02</div>
+          <h3 class="lp-mech-h">Honest enhancement strategy.</h3>
+          <p class="lp-mech-p">Natural, TRT, on cycle — we build protocols around what you're actually running. Ancillaries, peptides, GH/IGF strategy, PCT, and side-effect mitigation, dialed in for output now and longevity at 50. No taboos, no internet bro-science.</p>
+        </div>
+        <div class="lp-mech-card">
+          <div class="lp-mech-num">03</div>
+          <h3 class="lp-mech-h">Physiology, not just physique.</h3>
+          <p class="lp-mech-p">Joint integrity, CNS load, sleep architecture, gut function, cognitive output, libido, recovery resilience — the variables that decide whether your physique compounds for decades or burns out at 35. We work all of them in parallel.</p>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <!-- Transformations grid (full) -->
+    <div class="lp-tf">
+      <div class="lp-tf-header">
+        <div class="lp-eyebrow">Client Outcomes</div>
+        <h2 class="lp-title">Lifters who chose to <em>stop coasting.</em></h2>
+        <p class="lp-subtitle">Each of these guys was already in the gym before they signed on. What changed wasn't effort — it was the system they were running.</p>
+      </div>
+      <div class="lp-tf-grid">
+        <div class="lp-tf-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/2.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/3.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/4.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/5.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/6.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/7.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/8.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/9.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/10.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/11.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/12.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/13.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/14.png" alt="Client transformation" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Video testimonials -->
+    <div class="lp-vt">
+      <div class="lp-vt-header">
+        <div class="lp-eyebrow">In Their Words</div>
+        <h2 class="lp-title">Hear it from <em>the guys actually living it.</em></h2>
+      </div>
+      <div class="lp-vt-grid">
+        <div class="lp-vt-item">
+          <video controls preload="metadata" playsinline>
+            <source src="Video_Testemonials/NOAHTESTEMONIAL.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="lp-vt-item">
+          <video controls preload="metadata" playsinline>
+            <source src="Video_Testemonials/68c2fb657c5969434b61cad8.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="lp-vt-item">
+          <video controls preload="metadata" playsinline>
+            <source src="Video_Testemonials/68cc720ef782ba4ad7be993f.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="lp-vt-item">
+          <video controls preload="metadata" playsinline>
+            <source src="Video_Testemonials/68cf3d680563401c0a23ab6b.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary CTA -->
+    <div class="lp-cta">
+      <h2 class="lp-cta-title">Ready to <em>stop coasting?</em></h2>
+      <p class="lp-cta-sub">Spots are intentionally limited — we only take on clients we can move. The qualifier filters fast; if you're a fit, we'll book the call.</p>
+      <button class="lp-cta-btn" onclick="scrollToForm()">
+        Take the Qualifier <span class="arrow">→</span>
+      </button>
+      <p class="lp-cta-fine">Two minutes. Reviewed personally. No spam.</p>
+    </div>
+
+  </section>
+
+  <!-- Sticky mobile CTA (shows when form is scrolled out of view) -->
+  <button class="lp-sticky-cta" id="lp-sticky-cta" type="button" onclick="scrollToForm()">
+    Take the Qualifier <span class="arrow">→</span>
+  </button>
 
 </div>
 
@@ -1647,11 +1902,6 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         currentStep = next;
         updateProgress();
 
-        const tfSection = document.getElementById('form-transformations');
-        if (tfSection) {
-          tfSection.classList.toggle('visible', next >= 1 && next <= 8);
-        }
-
         // Focus first input on new step
         setTimeout(() => {
           const inp = nextEl.querySelector('input, textarea, select');
@@ -1777,6 +2027,15 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
   function sqBack() {
     if (currentStep > 0) goToStep(currentStep - 1);
+  }
+
+  function scrollToForm() {
+    var stage = document.getElementById('sq-stage');
+    if (!stage) return;
+    stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (currentStep === 0) {
+      setTimeout(sqNext, 600);
+    }
   }
 
 async function sqSubmit() {
@@ -1931,17 +2190,83 @@ async function sqSubmit() {
 
 
   /* ============================================================
-     IP GEOLOCATION — show user's city on intro step
+     IP GEOLOCATION — personalize the hero eyebrow
+     Calls /api/geo (Vercel Edge fn) which returns { city, region, country }
+     pulled from x-vercel-ip-* headers (MaxMind-grade dataset, free).
+     Falls back gracefully: city -> region -> country -> nothing.
   ============================================================ */
-  fetch('https://get.geojs.io/v1/ip/geo.json')
-    .then(r => r.json())
-    .then(data => {
-      if (data && data.city) {
-        document.getElementById('sq-city').textContent = data.city;
-        document.getElementById('sq-city-tag').style.display = 'block';
-      }
-    })
-    .catch(() => {});
+  /* ============================================================
+     STICKY MOBILE CTA — show after user scrolls past the form
+  ============================================================ */
+  (function stickyCta() {
+    var btn = document.getElementById('lp-sticky-cta');
+    var stage = document.getElementById('sq-stage');
+    var formPage = document.getElementById('page-form');
+    var bookingPage = document.getElementById('page-booking');
+    if (!btn || !stage || !formPage) return;
+
+    function shouldHide() {
+      if (!formPage.classList.contains('active')) return true; // on booking page
+      if (bookingPage && bookingPage.classList.contains('active')) return true;
+      if (typeof currentStep !== 'undefined' && currentStep === 9) return true;
+      return false;
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (shouldHide()) {
+            btn.classList.remove('visible');
+            return;
+          }
+          // Hide button while the form stage is in view; show when scrolled past.
+          btn.classList.toggle('visible', !entry.isIntersecting);
+        });
+      }, { threshold: 0.15 });
+      observer.observe(stage);
+    } else {
+      // Fallback for older browsers — scroll-based toggle.
+      window.addEventListener('scroll', function () {
+        if (shouldHide()) { btn.classList.remove('visible'); return; }
+        var rect = stage.getBoundingClientRect();
+        btn.classList.toggle('visible', rect.bottom < 60);
+      }, { passive: true });
+    }
+
+    // Hide instantly when page changes (form -> booking).
+    document.addEventListener('click', function (e) {
+      var target = e.target.closest && e.target.closest('[onclick*="showPage"]');
+      if (target) setTimeout(function () {
+        if (shouldHide()) btn.classList.remove('visible');
+      }, 50);
+    });
+  })();
+
+  (function personalizeLocation() {
+    var suffixEl = document.getElementById('sq-city-suffix');
+    if (!suffixEl) return;
+
+    // Skip obviously-low-signal "city" values that show up for big-cloud IPs.
+    var BAD_CITIES = { 'Ashburn': 1, 'Boardman': 1, 'Council Bluffs': 1, 'The Dalles': 1 };
+
+    fetch('/api/geo', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        var label = '';
+        if (data.city && !BAD_CITIES[data.city]) {
+          label = data.city;
+        } else if (data.region) {
+          label = data.region;
+        } else if (data.country) {
+          label = data.country;
+        }
+        if (label) {
+          suffixEl.textContent = ' in ' + label;
+        }
+      })
+      .catch(function () { /* keep default copy */ });
+  })();
 
 
 //supabase
