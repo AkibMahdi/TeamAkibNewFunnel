@@ -692,6 +692,53 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     opacity: 0.9;
   }
 
+  /* Inline link inside copy */
+  .ty-inline-link {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed rgba(255,77,0,0.45);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ty-inline-link:hover {
+    color: var(--orange-light);
+    border-bottom-color: var(--orange-light);
+  }
+
+  /* Pre-Call Intake (Typeform embed) */
+  .ty-intake {
+    padding: 80px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--black);
+  }
+  .ty-intake-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .ty-typeform-wrap {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    overflow: hidden;
+  }
+  .ty-typeform-wrap > div[data-tf-live] {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ty-intake-fine {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  @media (max-width: 600px) {
+    .ty-intake { padding: 56px 16px; }
+    .ty-typeform-wrap { padding: 4px; border-radius: 8px; }
+    .ty-typeform-wrap > div[data-tf-live] { min-height: 600px; }
+  }
+
   /* What to expect on call */
   .ty-expect {
     padding: 80px 24px;
@@ -918,7 +965,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   <!-- Pre-Call Checklist -->
   <div class="vsl-content" id="ty-checklist">
     <div class="sec-label">Before The Call</div>
-    <h2 class="sec-title">Do these <em>5 things</em><br>before we talk.</h2>
+    <h2 class="sec-title">Do these <em>3 things</em><br>before we talk.</h2>
     <p class="sec-body">
       The call is 30 minutes. If you walk in cold, half of it gets eaten by basics. Knock these out ahead of time and we spend the whole call on the things that actually move the needle for <strong>your</strong> physique, bloodwork, and protocol.
     </p>
@@ -936,41 +983,50 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       <div class="ty-check-item">
         <div class="ty-check-num">02</div>
         <div class="ty-check-body">
-          <div class="ty-check-h">Reply to your confirmation email with your stats.</div>
-          <div class="ty-check-p">Hit reply and send me:</div>
-          <ul class="ty-check-list">
-            <li>Current weight, height, and your honest body-fat estimate</li>
-            <li>Years training seriously + your last 3 PRs on squat / bench / deadlift (or your main lifts)</li>
-            <li>Where you are with enhancement — natural, TRT, on cycle, between cycles. If you're running anything, list compounds + doses + how long. No judgement, this is the whole reason you're booking.</li>
-            <li>Top 3 outcomes you want from coaching over the next 6–12 months</li>
-          </ul>
+          <div class="ty-check-h">Fill out the pre-call intake form.</div>
+          <div class="ty-check-p">Stats, training experience, enhancement status, bloodwork, photos, goals — all in one form. Bloodwork PDF and physique photos are optional but strongly recommended. The form is right below this checklist <a href="#ty-intake" class="ty-inline-link">↓</a></div>
         </div>
       </div>
 
       <div class="ty-check-item">
         <div class="ty-check-num">03</div>
         <div class="ty-check-body">
-          <div class="ty-check-h">Send your most recent bloodwork (if you have it).</div>
-          <div class="ty-check-p">Attach the PDF or lab portal screenshot to that same email. Hormones, lipids, liver, kidney, thyroid, CBC — whatever you've got. If you don't have any, no problem; just say so. If your bloodwork is older than 6 months, still send it — context matters.</div>
-        </div>
-      </div>
-
-      <div class="ty-check-item">
-        <div class="ty-check-num">04</div>
-        <div class="ty-check-body">
-          <div class="ty-check-h">Send 4 physique photos.</div>
-          <div class="ty-check-p">Front, back, and both sides. Relaxed (not flexed), in shorts, decent lighting, phone held at chest height. I'd rather see what your physique actually looks like under normal conditions than a flexed Instagram angle.</div>
-        </div>
-      </div>
-
-      <div class="ty-check-item">
-        <div class="ty-check-num">05</div>
-        <div class="ty-check-body">
           <div class="ty-check-h">Block 45 minutes and be on a desktop.</div>
           <div class="ty-check-p">The call is scheduled for 30 but I screen-share bloodwork breakdowns and protocol examples — desktop or laptop makes that 10× easier than a phone. Find a quiet spot. Show up 2 minutes early.</div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Pre-Call Intake (Typeform embed) -->
+  <div class="ty-intake" id="ty-intake">
+    <div class="ty-intake-inner">
+      <div class="sec-label">Pre-Call Intake</div>
+      <h2 class="sec-title">Fill this out<br><em>before our call.</em></h2>
+      <p class="sec-body" style="margin-bottom: 32px;">
+        Stats, enhancement status, and your top outcomes are required. Bloodwork PDF and 4 physique photos (front, back, both sides — relaxed, in shorts, decent lighting) are optional but make the call 10× more useful.
+      </p>
+
+      <div class="ty-typeform-wrap">
+        <div
+          id="ty-typeform-embed"
+          data-tf-live="oDA8O48T"
+          data-tf-inline-on-mobile="true"
+          data-tf-medium="snippet"
+          data-tf-iframe-props="title=Pre-Call Intake Form"
+          style="width:100%; min-height:680px;">
+        </div>
+        <noscript>
+          <p style="text-align:center; margin-top: 16px;">
+            <a href="https://h6allilcwkp.typeform.com/to/oDA8O48T" target="_blank" rel="noopener" class="ty-btn ty-btn-primary">Open the Intake Form ↗</a>
+          </p>
+        </noscript>
+      </div>
+
+      <p class="ty-intake-fine">
+        Trouble with the embedded form? <a href="https://h6allilcwkp.typeform.com/to/oDA8O48T" target="_blank" rel="noopener" class="ty-inline-link">Open it in a new tab ↗</a>
+      </p>
     </div>
   </div>
 
@@ -1458,6 +1514,67 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       try { fbq('track', 'Schedule'); } catch (_) {}
     }
   })();
+
+  /* ============================================================
+     TYPEFORM PRE-CALL INTAKE — inject hidden fields before
+     Typeform's embed.js reads the element so we can correlate every
+     intake submission to the funnel session and Calendly booking.
+
+     Requires the Typeform (oDA8O48T) to declare these URL params:
+       Custom:             sid, invitee, name
+       Respondent info:    first_name, last_name, email, phone_number
+  ============================================================ */
+  (function prefillTypeform() {
+    var embed = document.getElementById('ty-typeform-embed');
+    if (!embed) return;
+
+    var params = new URLSearchParams(window.location.search);
+
+    var sid       = params.get('sid')               || sessionStorage.getItem('session_uuid') || '';
+    var invitee   = params.get('invitee_uuid')      || params.get('invitee')                  || '';
+    var fullName  = params.get('invitee_full_name') || '';
+    var email     = params.get('invitee_email')     || '';
+    var firstName = '';
+    var lastName  = '';
+    var phone     = '';
+
+    /* Backfill from the qualifier formData saved to sessionStorage. */
+    try {
+      var raw = sessionStorage.getItem('formData');
+      if (raw) {
+        var f = JSON.parse(raw);
+        firstName = f.first_name || '';
+        lastName  = f.last_name  || '';
+        phone     = f.phone      || '';
+        if (!fullName) fullName = (firstName + ' ' + lastName).trim();
+        if (!email)    email    = f.email || '';
+      }
+    } catch (_) { /* ignore */ }
+
+    /* If Calendly gave us a full name but no first/last (e.g. direct
+       Calendly bookings), best-effort split it. */
+    if (!firstName && fullName) {
+      var parts = fullName.split(' ');
+      firstName = parts.shift() || '';
+      lastName  = parts.join(' ');
+    }
+
+    var pairs = [];
+    if (sid)       pairs.push('sid='          + encodeURIComponent(sid));
+    if (invitee)   pairs.push('invitee='      + encodeURIComponent(invitee));
+    if (fullName)  pairs.push('name='         + encodeURIComponent(fullName));
+    if (firstName) pairs.push('first_name='   + encodeURIComponent(firstName));
+    if (lastName)  pairs.push('last_name='    + encodeURIComponent(lastName));
+    if (email)     pairs.push('email='        + encodeURIComponent(email));
+    if (phone)     pairs.push('phone_number=' + encodeURIComponent(phone));
+
+    if (pairs.length) {
+      /* Typeform's embed.js reads `data-tf-hidden` (comma-separated
+         key=value pairs). Values URL-encoded above for safety. */
+      embed.setAttribute('data-tf-hidden', pairs.join(','));
+    }
+  })();
 </script>
+<script async src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
