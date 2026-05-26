@@ -73,20 +73,29 @@ module.exports = async (req, res) => {
     const evt = eventRes.data || {};
     const inv = (inviteeRes && inviteeRes.ok) ? (inviteeRes.data || {}) : null;
 
+    /* Strip location to the meeting *type* only — never echo back the
+       Zoom/Meet join URL, password, dial-in numbers, etc. through a
+       public endpoint, even one gated by hard-to-guess UUIDs. The
+       invitee already received the full join details directly from
+       Calendly via their calendar invite. */
+    var locationType = null;
+    if (evt.location && typeof evt.location === 'object' && evt.location.type) {
+      locationType = String(evt.location.type);
+    }
+
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300');
     res.end(JSON.stringify({
       event: {
-        start_time: evt.start_time || null,
-        end_time:   evt.end_time   || null,
-        name:       evt.name       || null,
-        status:     evt.status     || null,
-        location:   evt.location   || null,
+        start_time:    evt.start_time || null,
+        end_time:      evt.end_time   || null,
+        name:          evt.name       || null,
+        status:        evt.status     || null,
+        location_type: locationType,
       },
       invitee: inv ? {
         name:     inv.name     || null,
-        email:    inv.email    || null,
         status:   inv.status   || null,
         timezone: inv.timezone || null,
       } : null,
