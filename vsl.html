@@ -1516,13 +1516,13 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   })();
 
   /* ============================================================
-     TYPEFORM PRE-CALL INTAKE — inject hidden fields (sid, invitee,
-     name, email) before Typeform's embed.js reads the element so we
-     can correlate every intake submission to the funnel session and
-     Calendly booking.
+     TYPEFORM PRE-CALL INTAKE — inject hidden fields before
+     Typeform's embed.js reads the element so we can correlate every
+     intake submission to the funnel session and Calendly booking.
 
-     Requires the form (oDA8O48T) to declare these hidden fields:
-         sid, invitee, name, email
+     Requires the Typeform (oDA8O48T) to declare these URL params:
+       Custom:             sid, invitee, name
+       Respondent info:    first_name, last_name, email, phone_number
   ============================================================ */
   (function prefillTypeform() {
     var embed = document.getElementById('ty-typeform-embed');
@@ -1530,31 +1530,47 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     var params = new URLSearchParams(window.location.search);
 
-    var sid     = params.get('sid')                 || sessionStorage.getItem('session_uuid') || '';
-    var invitee = params.get('invitee_uuid')        || params.get('invitee')                  || '';
-    var name    = params.get('invitee_full_name')   || '';
-    var email   = params.get('invitee_email')       || '';
+    var sid       = params.get('sid')               || sessionStorage.getItem('session_uuid') || '';
+    var invitee   = params.get('invitee_uuid')      || params.get('invitee')                  || '';
+    var fullName  = params.get('invitee_full_name') || '';
+    var email     = params.get('invitee_email')     || '';
+    var firstName = '';
+    var lastName  = '';
+    var phone     = '';
 
-    /* Fall back to the funnel formData saved to sessionStorage when
-       Calendly didn't forward invitee_full_name / invitee_email. */
+    /* Backfill from the qualifier formData saved to sessionStorage. */
     try {
       var raw = sessionStorage.getItem('formData');
       if (raw) {
         var f = JSON.parse(raw);
-        if (!name)  name  = ((f.first_name || '') + ' ' + (f.last_name || '')).trim();
-        if (!email) email = f.email || '';
+        firstName = f.first_name || '';
+        lastName  = f.last_name  || '';
+        phone     = f.phone      || '';
+        if (!fullName) fullName = (firstName + ' ' + lastName).trim();
+        if (!email)    email    = f.email || '';
       }
     } catch (_) { /* ignore */ }
 
+    /* If Calendly gave us a full name but no first/last (e.g. direct
+       Calendly bookings), best-effort split it. */
+    if (!firstName && fullName) {
+      var parts = fullName.split(' ');
+      firstName = parts.shift() || '';
+      lastName  = parts.join(' ');
+    }
+
     var pairs = [];
-    if (sid)     pairs.push('sid='     + encodeURIComponent(sid));
-    if (invitee) pairs.push('invitee=' + encodeURIComponent(invitee));
-    if (name)    pairs.push('name='    + encodeURIComponent(name));
-    if (email)   pairs.push('email='   + encodeURIComponent(email));
+    if (sid)       pairs.push('sid='          + encodeURIComponent(sid));
+    if (invitee)   pairs.push('invitee='      + encodeURIComponent(invitee));
+    if (fullName)  pairs.push('name='         + encodeURIComponent(fullName));
+    if (firstName) pairs.push('first_name='   + encodeURIComponent(firstName));
+    if (lastName)  pairs.push('last_name='    + encodeURIComponent(lastName));
+    if (email)     pairs.push('email='        + encodeURIComponent(email));
+    if (phone)     pairs.push('phone_number=' + encodeURIComponent(phone));
 
     if (pairs.length) {
       /* Typeform's embed.js reads `data-tf-hidden` (comma-separated
-         key=value pairs). We URL-encoded values above for safety. */
+         key=value pairs). Values URL-encoded above for safety. */
       embed.setAttribute('data-tf-hidden', pairs.join(','));
     }
   })();
