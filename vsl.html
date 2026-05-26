@@ -1444,10 +1444,11 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   (function thankYouInit() {
     var params = new URLSearchParams(window.location.search);
 
-    var inviteeUuid    = params.get('invitee_uuid')      || params.get('invitee')      || '';
-    var eventStart     = params.get('event_start_time')  || '';
-    var inviteeName    = params.get('invitee_full_name') || params.get('invitee_name') || '';
-    var inviteeEmail   = params.get('invitee_email')     || '';
+    var inviteeUuid  = params.get('invitee_uuid')      || params.get('invitee')      || '';
+    var eventUuid    = params.get('event_uuid')        || params.get('event_type_uuid') || '';
+    var eventStart   = params.get('event_start_time')  || '';
+    var inviteeName  = params.get('invitee_full_name') || params.get('invitee_name')    || '';
+    var inviteeEmail = params.get('invitee_email')     || '';
 
     /* Fallback to sessionStorage data (set by the funnel form before redirect). */
     var storedName = '';
@@ -1459,9 +1460,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       }
     } catch (_) { /* ignore */ }
 
-    var displayName = inviteeName || storedName;
-
-    /* Pretty-print the event start time in the user's locale. */
+    /* Pretty-print an ISO timestamp in the user's locale. */
     function formatTime(iso) {
       if (!iso) return '';
       var d = new Date(iso);
@@ -1484,23 +1483,20 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     var resTop = document.getElementById('ty-reschedule-btn');
     var resBot = document.getElementById('ty-reschedule-btn-bottom');
 
-    if (nameEl) nameEl.textContent = displayName || 'Your strategy call';
-
+    /* Initial render from whatever the URL / sessionStorage already gave us. */
+    if (nameEl) nameEl.textContent = (inviteeName || storedName) || 'Your strategy call';
     var prettyTime = formatTime(eventStart);
     if (timeEl && prettyTime) timeEl.textContent = prettyTime;
 
-    /* Wire reschedule links. Calendly's invitee reschedule URL pattern is
-       https://calendly.com/reschedulings/{invitee_uuid}. If we don't have the
-       UUID, fall back to a generic Calendly URL the user can recognize. */
+    /* Reschedule links. */
     var rescheduleUrl = inviteeUuid
       ? 'https://calendly.com/reschedulings/' + encodeURIComponent(inviteeUuid)
       : 'https://calendly.com/akibmahdi1/booking-page';
     if (resTop) resTop.setAttribute('href', rescheduleUrl);
     if (resBot) resBot.setAttribute('href', rescheduleUrl);
 
-    /* Empty state: if we have no invitee_uuid AND no event_start_time AND no
-       stored funnel data, the visitor probably arrived here directly. */
-    var hasBooking = !!(inviteeUuid || eventStart || storedName);
+    /* Empty state when nothing identifies a booking. */
+    var hasBooking = !!(inviteeUuid || eventUuid || eventStart || storedName);
     var emptyEl = document.getElementById('ty-empty');
     if (!hasBooking && emptyEl) {
       emptyEl.style.display = 'block';
@@ -1511,6 +1507,38 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     if (typeof fbq === 'function') {
       try { fbq('track', 'Schedule'); } catch (_) {}
     }
+
+    /* Enrich the booking card from Calendly API when we have a server-side
+       fetcher available. Only runs if we have at least an event_uuid (the
+       embedded postMessage path doesn't pass event_start_time). */
+    if (!eventUuid || !timeEl) return;
+
+    var apiUrl = '/api/calendly-event?event_uuid=' + encodeURIComponent(eventUuid)
+               + (inviteeUuid ? '&invitee_uuid=' + encodeURIComponent(inviteeUuid) : '');
+
+    if (timeEl && !prettyTime) timeEl.textContent = 'Looking up your call time…';
+
+    fetch(apiUrl, { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+
+        if (data.event && data.event.start_time && timeEl) {
+          var formatted = formatTime(data.event.start_time);
+          if (formatted) timeEl.textContent = formatted;
+        }
+
+        if (data.invitee && data.invitee.name && nameEl) {
+          /* Prefer the Calendly-confirmed name over the sessionStorage one. */
+          nameEl.textContent = data.invitee.name;
+        }
+      })
+      .catch(function () {
+        /* Silent fail — booking card already has graceful defaults. */
+        if (timeEl && !prettyTime && timeEl.textContent === 'Looking up your call time…') {
+          timeEl.textContent = 'Check your inbox for the calendar invite';
+        }
+      });
   })();
 
   /* ============================================================
