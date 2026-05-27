@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TA Coaching - Application</title>
-<meta name="description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability — built around your schedule, not someone else's template.">
-<meta property="og:title" content="TA Coaching — Apply Now">
-<meta property="og:description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability — built for your life.">
+<title>TA Coaching — ADHD Performance Coaching</title>
+<meta name="description" content="Data-driven physique coaching for men with ADHD. Structure, accountability, and biomarker-informed training and nutrition.">
+<meta property="og:title" content="TA Coaching — ADHD Performance Coaching">
+<meta property="og:description" content="Build a leaner, stronger, higher-output body with a system built around your brain, your schedule, and your biomarkers.">
 <meta property="og:image" content="https://www.teamakib.org/og-image.png">
 <meta property="og:url" content="https://www.teamakib.org/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TA Coaching — Apply Now">
-<meta name="twitter:description" content="Elite coaching for driven professionals. Custom training, precision nutrition, and daily accountability.">
+<meta name="twitter:title" content="TA Coaching — ADHD Performance Coaching">
+<meta name="twitter:description" content="Data-driven physique coaching for men with ADHD. Structure, accountability, and biomarker-informed optimization.">
 <meta name="twitter:image" content="https://www.teamakib.org/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -418,8 +418,199 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   }
   .lp-mech-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .lp-block {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+  .lp-block-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .lp-proof { padding-top: 32px; }
+  .lp-proof .lp-strip { border-top: none; padding-top: 0; }
+
+  .lp-problem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .lp-problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .lp-problem-item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .lp-bullet-list {
+    list-style: none;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .lp-bullet-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .lp-bullet-list li::before {
+    content: '→';
+    color: var(--orange);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .lp-tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .lp-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text);
+    background: var(--dark);
+  }
+
+  .lp-disclaimer {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--dark);
+  }
+
+  .lp-compare {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .lp-compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .lp-compare-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .lp-compare-generic { color: var(--muted); }
+  .lp-compare-ta { color: var(--text); border-left: 2px solid var(--orange); padding-left: 12px; }
+
+  .lp-quote-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .lp-quote {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    font-style: italic;
+  }
+  .lp-quote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .faq-section { padding: 64px 24px; max-width: 1100px; margin: 0 auto; border-top: 1px solid var(--border); }
+  .faq-inner { max-width: 700px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    text-align: left;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--orange); }
+  .faq-icon {
+    font-size: 22px;
+    color: var(--muted);
+    transition: transform 0.25s, color 0.25s;
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--orange); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-item.open .faq-answer { max-height: 320px; }
+  .faq-answer-inner { padding: 0 0 20px; font-size: 15px; line-height: 1.7; color: var(--muted); }
+
+  .lp-cta-support {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .lp-cta-trust {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lp-mech-card {
     background: var(--dark);
@@ -619,6 +810,9 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     .lp-mech-grid { grid-template-columns: 1fr; }
     .lp-vt-grid { grid-template-columns: 1fr; }
     .lp-strip-row { grid-template-columns: repeat(2, 1fr); }
+    .lp-problem-grid { grid-template-columns: 1fr; }
+    .lp-quote-row { grid-template-columns: 1fr; }
+    .lp-compare-row { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -1387,8 +1581,8 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       padding-top: 8px;
       padding-bottom: 32px;
     }
-    #page-form:has(#sq-step-0.state-active) .lp-mech {
-      padding-top: 40px;
+    #page-form:has(#sq-step-0.state-active) .lp-proof {
+      padding-top: 24px;
     }
 
     .sq-step { padding: 32px 20px 24px; }
@@ -1463,14 +1657,14 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     <!-- STEP 0: Hero -->
     <div class="sq-step state-active" data-step="0" id="sq-step-0">
-      <p class="sq-city-tag" id="sq-city-tag">For serious lifters<span id="sq-city-suffix"></span></p>
-      <h1 class="intro-headline">You already lift.<br><em>Now optimize everything.</em></h1>
-      <p class="sq-subhead">Stage-grade conditioning. Bloodwork dialed to the decimal. Honest enhancement strategy. Joint, CNS &amp; brain optimization most coaches don't even know exists — for men who are already in the gym and ready to <strong>stop leaving leverage on the table</strong>.</p>
-      <div class="sq-qnum">Application — Limited Spots</div>
-      <p class="sq-hint">Two-minute qualifier. Every answer is reviewed personally before we book.</p>
+      <p class="sq-city-tag" id="sq-city-tag">TA Coaching<span id="sq-city-suffix"></span></p>
+      <h1 class="intro-headline">Data-driven physique coaching<br><em>for men with ADHD.</em></h1>
+      <p class="sq-subhead">Build a leaner, stronger, higher-output body with a system built around your brain, your schedule, and your biomarkers.</p>
+      <div class="sq-qnum">ADHD Performance Qualifier — Limited Spots</div>
+      <p class="sq-hint">Applications are reviewed before booking.</p>
       <div class="sq-actions" style="justify-content: center;">
         <button class="sq-next" onclick="sqNext()">
-          Take the Qualifier <span class="arrow">→</span>
+          Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
         </button>
       </div>
     </div>
@@ -1697,49 +1891,149 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   ============================================ -->
   <section class="lp-sections" id="lp-sections">
 
-    <!-- Quick proof strip: 4 hero transformations -->
-    <div class="lp-strip">
-      <div class="lp-strip-row">
-        <div class="lp-strip-item"><img src="Transformations/1.png" alt="Client physique optimization" loading="lazy"></div>
-        <div class="lp-strip-item"><img src="Transformations/3.png" alt="Client physique optimization" loading="lazy"></div>
-        <div class="lp-strip-item"><img src="Transformations/7.png" alt="Client physique optimization" loading="lazy"></div>
-        <div class="lp-strip-item"><img src="Transformations/12.png" alt="Client physique optimization" loading="lazy"></div>
+    <!-- Transformation proof -->
+    <div class="lp-block lp-proof">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">Client Results</div>
+        <h2 class="lp-title">Men who stopped restarting and started <em>running a system.</em></h2>
+        <p class="lp-subtitle">These results came from structure, accountability, smarter nutrition, and better decisions — not more motivation.</p>
+      </div>
+      <div class="lp-strip">
+        <div class="lp-strip-row">
+          <div class="lp-strip-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/3.png" alt="Client transformation" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/7.png" alt="Client transformation" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/12.png" alt="Client transformation" loading="lazy"></div>
+        </div>
       </div>
     </div>
 
-    <!-- Mechanism: Why it works -->
+    <!-- Problem -->
+    <div class="lp-block">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">The Real Problem</div>
+        <h2 class="lp-title">Most fitness plans fail ADHD brains because they depend on <em>perfect consistency.</em></h2>
+      </div>
+      <div class="lp-problem-grid">
+        <div class="lp-problem-item">Decision fatigue</div>
+        <div class="lp-problem-item">Overthinking</div>
+        <div class="lp-problem-item">Impulsive eating</div>
+        <div class="lp-problem-item">Boredom with routines</div>
+        <div class="lp-problem-item">Chaotic schedules</div>
+        <div class="lp-problem-item">All-or-nothing cycles</div>
+        <div class="lp-problem-item">Restarting every Monday</div>
+        <div class="lp-problem-item">Too much guessing</div>
+      </div>
+    </div>
+
+    <!-- This is for you if -->
+    <div class="lp-block">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">Fit Check</div>
+        <h2 class="lp-title">This is for you if your brain makes fitness <em>harder than it should be.</em></h2>
+      </div>
+      <ul class="lp-bullet-list">
+        <li>You know what to do but struggle to execute.</li>
+        <li>You start strong, then disappear.</li>
+        <li>You overthink food, training, supplements, and the perfect plan.</li>
+        <li>You eat impulsively when stressed, bored, or overstimulated.</li>
+        <li>You get bored of routines quickly.</li>
+        <li>You need accountability or you fall off.</li>
+        <li>You care about data, hormones, recovery, health markers, and long-term performance.</li>
+      </ul>
+    </div>
+
+    <!-- Method + four pillars -->
     <div class="lp-mech">
       <div class="lp-mech-header">
         <div class="lp-eyebrow">The Approach</div>
-        <h2 class="lp-title">Most coaches sell <em>low-hanging fruit.</em><br>We optimize the system.</h2>
-        <p class="lp-subtitle">If you've been training seriously for years, you don't need another beginner program or another "just hit your macros" lecture. You need the ceiling raised — and that means working on every variable, not just the obvious ones.</p>
+        <h2 class="lp-title">Structure first. Accountability always. Data when it matters. <em>Optimization once the system is running.</em></h2>
+        <p class="lp-subtitle">TA Coaching removes friction first, then uses data to optimize what most coaches guess at.</p>
       </div>
 
       <div class="lp-mech-grid">
         <div class="lp-mech-card">
           <div class="lp-mech-num">01</div>
-          <h3 class="lp-mech-h">Bloodwork drives everything.</h3>
-          <p class="lp-mech-p">Quarterly labs — full hormone panels, lipids, inflammation markers, organ health, micronutrients — dictate every adjustment to training, nutrition, and supplementation. No guessing. No "feel it out." Measured, then changed.</p>
+          <h3 class="lp-mech-h">ADHD Execution System</h3>
+          <p class="lp-mech-p">Clear training, meals, steps, check-ins, reminders, and weekly targets — built so you know exactly what to do without decision overload.</p>
         </div>
         <div class="lp-mech-card">
           <div class="lp-mech-num">02</div>
-          <h3 class="lp-mech-h">Honest enhancement strategy.</h3>
-          <p class="lp-mech-p">Natural, TRT, on cycle — we build protocols around what you're actually running. Ancillaries, peptides, GH/IGF strategy, PCT, and side-effect mitigation, dialed in for output now and longevity at 50. No taboos, no internet bro-science.</p>
+          <h3 class="lp-mech-h">Accountability Before the Spiral</h3>
+          <p class="lp-mech-p">Feedback loops, communication, adjustments, and check-ins before one bad day becomes a full reset.</p>
         </div>
         <div class="lp-mech-card">
           <div class="lp-mech-num">03</div>
-          <h3 class="lp-mech-h">Physiology, not just physique.</h3>
-          <p class="lp-mech-p">Joint integrity, CNS load, sleep architecture, gut function, cognitive output, libido, recovery resilience — the variables that decide whether your physique compounds for decades or burns out at 35. We work all of them in parallel.</p>
+          <h3 class="lp-mech-h">Bloodwork-Informed Decision Making</h3>
+          <p class="lp-mech-p">Hormones, lipids, glucose markers, inflammation, organ health, micronutrients, sleep, stress, and recovery — used to guide training and nutrition adjustments, not hype.</p>
+        </div>
+        <div class="lp-mech-card">
+          <div class="lp-mech-num">04</div>
+          <h3 class="lp-mech-h">Advanced Context-Aware Optimization</h3>
+          <p class="lp-mech-p">Natural, physician-managed TRT, enhanced/bodybuilding context, recovery load, training stress, appetite, blood pressure, performance, and health markers — optimized around your real situation.</p>
         </div>
       </div>
     </div>
 
-    <!-- Transformations grid (full) -->
+    <!-- Advanced optimization -->
+    <div class="lp-block">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">Advanced Layer</div>
+        <h2 class="lp-title">Data over <em>guessing.</em></h2>
+      </div>
+      <div class="lp-tag-grid">
+        <span class="lp-tag">Training performance</span>
+        <span class="lp-tag">Nutrition response</span>
+        <span class="lp-tag">Sleep &amp; recovery</span>
+        <span class="lp-tag">Digestion &amp; appetite</span>
+        <span class="lp-tag">Blood pressure</span>
+        <span class="lp-tag">Hormone context</span>
+        <span class="lp-tag">Lipid &amp; cardiovascular markers</span>
+        <span class="lp-tag">Liver &amp; kidney markers</span>
+        <span class="lp-tag">Micronutrients</span>
+        <span class="lp-tag">Natural / TRT / enhanced context</span>
+        <span class="lp-tag">Supplementation strategy</span>
+        <span class="lp-tag">Long-term health &amp; performance</span>
+      </div>
+      <p class="lp-disclaimer">TA Coaching does not prescribe medication or replace medical care. We help structure the fitness, nutrition, recovery, and performance side around your real data and physician-guided health context.</p>
+    </div>
+
+    <!-- Why different -->
+    <div class="lp-block">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">Why TA Coaching</div>
+        <h2 class="lp-title">This is not another meal plan and <em>workout PDF.</em></h2>
+      </div>
+      <div class="lp-compare">
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Guesses.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Measures.</div></div>
+        </div>
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Shames inconsistency.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Builds systems around it.</div></div>
+        </div>
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Ignores ADHD.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Accounts for it.</div></div>
+        </div>
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Stops at macros.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Looks at training, nutrition, recovery, biomarkers, and execution.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client outcomes -->
     <div class="lp-tf">
       <div class="lp-tf-header">
-        <div class="lp-eyebrow">Client Outcomes</div>
-        <h2 class="lp-title">Lifters who chose to <em>stop coasting.</em></h2>
-        <p class="lp-subtitle">Each of these guys was already in the gym before they signed on. What changed wasn't effort — it was the system they were running.</p>
+        <div class="lp-eyebrow">Social Proof</div>
+        <h2 class="lp-title">The system changes <em>the outcome.</em></h2>
+        <p class="lp-subtitle">Consistency, schedule structure, recovery, energy, bloodwork, strength, and confidence — built through execution first, then optimization.</p>
+      </div>
+      <div class="lp-quote-row">
+        <blockquote class="lp-quote">"I finally stopped restarting every month. The check-ins and clear targets are what my brain needed."<cite>— Client</cite></blockquote>
+        <blockquote class="lp-quote">"Less guessing, more structure. Training and nutrition finally matched my actual schedule."<cite>— Client</cite></blockquote>
       </div>
       <div class="lp-tf-grid">
         <div class="lp-tf-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
@@ -1763,7 +2057,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <div class="lp-vt">
       <div class="lp-vt-header">
         <div class="lp-eyebrow">In Their Words</div>
-        <h2 class="lp-title">Hear it from <em>the guys actually living it.</em></h2>
+        <h2 class="lp-title">Hear it from <em>men running the system.</em></h2>
       </div>
       <div class="lp-vt-grid">
         <div class="lp-vt-item">
@@ -1789,21 +2083,105 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- Secondary CTA -->
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="faq-inner">
+        <div class="lp-block-header" style="margin-bottom: 32px;">
+          <div class="lp-eyebrow">FAQ</div>
+          <h2 class="lp-title">Common <em>questions</em></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Is this only for men officially diagnosed with ADHD?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">No. Many clients relate to ADHD patterns — execution issues, impulsivity, boredom with routines, chaotic schedules — whether or not they have a formal diagnosis. The qualifier helps us see if the system is a fit.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Do I need bloodwork before starting?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">No. Send what you have if available. We build execution and structure first, then use labs to refine decisions when they matter.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Do you work with natural clients?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. Natural clients are common. The system is built around structure, accountability, training, nutrition, recovery, and data — not enhancement requirements.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Do you work with TRT/enhanced clients?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes, with context. We optimize training, nutrition, recovery, and performance around physician-managed TRT or enhanced protocols — without prescribing medication.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Do you prescribe protocols or medication?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">No. TA Coaching does not prescribe medication or replace medical care. We structure fitness, nutrition, recovery, and performance around your real data and physician-guided health context.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              What if I've failed other programs?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">That's common here. Most failures are systems problems — too much friction, no accountability, no ADHD-aware structure — not a motivation problem.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              How much accountability is included?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Accountability is core — check-ins, feedback loops, and adjustments before small slips become full resets. Exact structure depends on your tier and is covered on the strategy call.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              How long does the coaching last?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Programs are built for sustained execution and optimization, not a 30-day challenge. Length and structure are discussed on your call based on your goals and starting point.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              Who is this not for?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Men looking for a cheap PDF, zero accountability, or someone to do the work for them. This is for men who want structure, follow-through, and serious optimization.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" onclick="toggleFaq(this)">
+              What happens after I apply?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Your application is reviewed. If it's a fit, you'll book a strategy call, complete a short pre-call intake, and we'll map your execution system and next steps together.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
     <div class="lp-cta">
-      <h2 class="lp-cta-title">Ready to <em>stop coasting?</em></h2>
-      <p class="lp-cta-sub">Spots are intentionally limited — we only take on clients we can move. The qualifier filters fast; if you're a fit, we'll book the call.</p>
+      <h2 class="lp-cta-title">Ready to build a system your ADHD brain can <em>actually follow?</em></h2>
+      <p class="lp-cta-sub">Apply below if you want structure, accountability, data, and serious optimization — without pretending ADHD, stress, recovery, hormones, or real life don't matter.</p>
+      <p class="lp-cta-support">Structure. Accountability. Flexible nutrition. Intelligent training. Bloodwork-informed optimization. Advanced context when needed.</p>
       <button class="lp-cta-btn" onclick="scrollToForm()">
-        Take the Qualifier <span class="arrow">→</span>
+        Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
       </button>
-      <p class="lp-cta-fine">Two minutes. Reviewed personally. No spam.</p>
+      <p class="lp-cta-fine">Applications are reviewed before booking.</p>
+      <p class="lp-cta-trust">Not generic fitness coaching. A structured performance system for men who need execution first, then optimization.</p>
     </div>
 
   </section>
 
   <!-- Sticky mobile CTA (shows when form is scrolled out of view) -->
   <button class="lp-sticky-cta" id="lp-sticky-cta" type="button" onclick="scrollToForm()">
-    Take the Qualifier <span class="arrow">→</span>
+    Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
   </button>
 
 </div>
@@ -1898,6 +2276,11 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   /* ============================================================
      PAGE SWITCHER
   ============================================================ */
+  function toggleFaq(btn) {
+    var item = btn.parentElement;
+    if (item) item.classList.toggle('open');
+  }
+
   function showPage(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
