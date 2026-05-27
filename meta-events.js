@@ -118,10 +118,42 @@
     }
   }
 
+  var VSL_MEDIA_ID = 'yryb89qho1';
+
+  function onVslPast25(detail) {
+    var pct = detail.percent != null ? detail.percent : detail.percentWatched;
+    var last = detail.lastPercent != null ? detail.lastPercent : detail.lastPercentWatched;
+    if (pct == null) return;
+    if (last != null && last >= 0.25) return;
+    if (pct >= 0.25) trackVsl25();
+  }
+
+  function bindAuroraPlayer(player) {
+    if (!player || player.__taVslBound) return;
+    player.__taVslBound = true;
+    player.addEventListener('percent-watched-change', function (event) {
+      onVslPast25(event.detail || {});
+    });
+  }
+
   function initVslWatch() {
+    var player = document.querySelector('wistia-player[media-id="' + VSL_MEDIA_ID + '"]');
+    if (player) {
+      if (global.customElements && global.customElements.whenDefined) {
+        global.customElements.whenDefined('wistia-player').then(function () {
+          bindAuroraPlayer(player);
+        }).catch(function () {
+          bindAuroraPlayer(player);
+        });
+      } else {
+        bindAuroraPlayer(player);
+      }
+    }
+
+    /* Legacy embed API fallback */
     global._wq = global._wq || [];
     global._wq.push({
-      id: 'yryb89qho1',
+      id: VSL_MEDIA_ID,
       onReady: function (video) {
         var fired = false;
         video.bind('percentwatchedchanged', function (pct) {
