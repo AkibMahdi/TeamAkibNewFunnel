@@ -1323,27 +1323,35 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     .sq-progress-bar { top: 52px; }
     .sq-step-counter { top: 60px; right: 16px; font-size: 10px; }
 
-    /* FORM STEP ENGINE — intro: top-aligned + shorter stage so proof strip peeks */
+    /* FORM STEP ENGINE */
     .sq-stage {
       padding: 72px 0 80px;
       min-height: calc(100dvh - 52px);
     }
+    /* Intro: in-flow layout so hero isn't crushed; proof strip sits below naturally */
     .sq-stage:has(#sq-step-0.state-active) {
-      align-items: flex-start;
-      justify-content: flex-start;
+      display: block;
       min-height: 0;
-      padding: 46px 16px 12px;
-      padding-top: max(46px, calc(12px + env(safe-area-inset-top, 0px)));
+      padding: 48px 0 16px;
+      padding-top: max(48px, calc(8px + env(safe-area-inset-top, 0px)));
     }
-    #sq-step-0.state-active {
-      top: 0;
-      transform: translateX(-50%);
+    .sq-stage:has(#sq-step-0.state-active) #sq-step-0.state-active {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      margin: 0 auto;
+      padding: 0 20px 4px;
     }
-    #sq-step-0.state-enter {
-      transform: translate(-50%, 16px);
+    .sq-stage:has(#sq-step-0.state-active) #sq-step-0.state-enter {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: translateY(12px);
     }
-    #sq-step-0.state-exit {
-      transform: translate(-50%, -16px);
+    .sq-stage:has(#sq-step-0.state-active) #sq-step-0.state-exit {
+      position: absolute;
+      transform: translate(-50%, -12px);
     }
     #sq-step-0 .sq-city-tag {
       margin-bottom: 8px;
@@ -1359,21 +1367,28 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       font-size: 14px;
       line-height: 1.5;
       margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     #sq-step-0 .sq-qnum {
       margin-bottom: 8px;
       font-size: 10px;
     }
     #sq-step-0 .sq-hint {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       font-size: 13px;
     }
     #sq-step-0 .sq-actions {
       margin-top: 0;
     }
-    .lp-strip {
-      padding-top: 4px;
-      padding-bottom: 28px;
+    #page-form:has(#sq-step-0.state-active) .lp-strip {
+      padding-top: 8px;
+      padding-bottom: 32px;
+    }
+    #page-form:has(#sq-step-0.state-active) .lp-mech {
+      padding-top: 40px;
     }
 
     .sq-step { padding: 32px 20px 24px; }
