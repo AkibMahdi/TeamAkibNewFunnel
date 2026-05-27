@@ -2308,12 +2308,6 @@ async function sqSubmit() {
 
 
   /* ============================================================
-     IP GEOLOCATION — personalize the hero eyebrow
-     Calls /api/geo (Vercel Edge fn) which returns { city, region, country }
-     pulled from x-vercel-ip-* headers (MaxMind-grade dataset, free).
-     Falls back gracefully: city -> region -> country -> nothing.
-  ============================================================ */
-  /* ============================================================
      STICKY MOBILE CTA — show after user scrolls past the form
   ============================================================ */
   (function stickyCta() {
@@ -2360,11 +2354,11 @@ async function sqSubmit() {
     });
   })();
 
+  /* Geolocation eyebrow disabled — Vercel IP geo was often inaccurate (e.g. datacenter cities).
   (function personalizeLocation() {
     var suffixEl = document.getElementById('sq-city-suffix');
     if (!suffixEl) return;
 
-    // Skip obviously-low-signal "city" values that show up for big-cloud IPs.
     var BAD_CITIES = { 'Ashburn': 1, 'Boardman': 1, 'Council Bluffs': 1, 'The Dalles': 1 };
 
     fetch('/api/geo', { headers: { 'Accept': 'application/json' } })
@@ -2383,8 +2377,9 @@ async function sqSubmit() {
           suffixEl.textContent = ' in ' + label;
         }
       })
-      .catch(function () { /* keep default copy */ });
+      .catch(function () { });
   })();
+  */
 
 
 //supabase
