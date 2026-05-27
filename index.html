@@ -34,6 +34,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script src="/meta-events.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -1902,6 +1903,10 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         currentStep = next;
         updateProgress();
 
+        if (next === 1 && window.TeamAkibMeta) {
+          window.TeamAkibMeta.trackFormStart();
+        }
+
         // Focus first input on new step
         setTimeout(() => {
           const inp = nextEl.querySelector('input, textarea, select');
@@ -2071,9 +2076,20 @@ async function sqSubmit() {
     
     console.log('Form submitted successfully:', data);
     const eventId = crypto.randomUUID();
-    if (typeof fbq === 'function') fbq('track', 'Lead', {}, { eventID: eventId });
+    formData.pixel_qualified = window.TeamAkibMeta
+      ? window.TeamAkibMeta.isQualifiedLead(formData)
+      : false;
+    try {
+      sessionStorage.setItem('formData', JSON.stringify(formData));
+    } catch (_) { /* ignore */ }
+    if (window.TeamAkibMeta) {
+      window.TeamAkibMeta.trackLeadComplete(formData, eventId);
+    }
 
-    const webhookPayload = Object.assign({}, formData, { event_id: eventId });
+    const webhookPayload = Object.assign({}, formData, {
+      event_id: eventId,
+      pixel_qualified: formData.pixel_qualified
+    });
     fetch('https://hook.us2.make.com/tw8xngg0yh2cxbh1md13eab8pube7of3', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -2121,7 +2137,12 @@ async function sqSubmit() {
   // Listen for Calendly booking confirmation — registered once globally
   window.addEventListener('message', (e) => {
     if (e.data && e.data.event === 'calendly.event_scheduled') {
-      if (typeof fbq === 'function') fbq('track', 'Schedule');
+      var scheduleEventId = window.TeamAkibMeta
+        ? window.TeamAkibMeta.getOrCreateScheduleEventId()
+        : null;
+      if (window.TeamAkibMeta) {
+        window.TeamAkibMeta.trackScheduleQualified(formData, scheduleEventId);
+      }
 
       // Persist the funnel form data so the /vsl page can greet by name
       // even if Calendly doesn't pass invitee_full_name through.

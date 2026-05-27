@@ -35,6 +35,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script src="/meta-events.js"></script>
 <script src="https://fast.wistia.com/player.js" async></script>
 <script src="https://fast.wistia.com/embed/yryb89qho1.js" async type="module"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1502,10 +1503,14 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       emptyEl.style.display = 'block';
     }
 
-    /* Fire FB pixel Schedule event (safety net — original fires before
-       redirect and can race with navigation). */
-    if (typeof fbq === 'function') {
-      try { fbq('track', 'Schedule'); } catch (_) {}
+    if (window.TeamAkibMeta) {
+      if (hasBooking) {
+        window.TeamAkibMeta.trackScheduleQualified(
+          window.TeamAkibMeta.getStoredFormData(),
+          window.TeamAkibMeta.getOrCreateScheduleEventId()
+        );
+      }
+      window.TeamAkibMeta.initVslWatch();
     }
 
     /* Enrich the booking card from Calendly API when we have a server-side
