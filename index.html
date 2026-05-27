@@ -1314,16 +1314,68 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   @media (max-width: 600px) {
 
     /* NAV */
+    .page { padding-top: 52px; }
     .funnel-nav { padding: 0 16px; height: 52px; }
     .funnel-nav .brand { font-size: 16px; letter-spacing: 2px; }
     .step-btn { padding: 6px 10px; font-size: 11px; gap: 6px; }
     .step-btn > span:last-child { display: none; }
     .step-divider { width: 16px; }
     .sq-progress-bar { top: 52px; }
-    .sq-step-counter { top: 62px; right: 16px; font-size: 10px; }
+    .sq-step-counter { top: 60px; right: 16px; font-size: 10px; }
 
-    /* FORM STEP ENGINE */
-    .sq-stage { padding: 72px 0 80px; }
+    /* FORM STEP ENGINE — intro: top-aligned + shorter stage so proof strip peeks */
+    .sq-stage {
+      padding: 72px 0 80px;
+      min-height: calc(100dvh - 52px);
+    }
+    .sq-stage:has(#sq-step-0.state-active) {
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 0;
+      padding: 46px 16px 12px;
+      padding-top: max(46px, calc(12px + env(safe-area-inset-top, 0px)));
+    }
+    #sq-step-0.state-active {
+      top: 0;
+      transform: translateX(-50%);
+    }
+    #sq-step-0.state-enter {
+      transform: translate(-50%, 16px);
+    }
+    #sq-step-0.state-exit {
+      transform: translate(-50%, -16px);
+    }
+    #sq-step-0 .sq-city-tag {
+      margin-bottom: 8px;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+    #sq-step-0 .intro-headline {
+      font-size: clamp(34px, 10vw, 44px);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    #sq-step-0 .sq-subhead {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    #sq-step-0 .sq-qnum {
+      margin-bottom: 8px;
+      font-size: 10px;
+    }
+    #sq-step-0 .sq-hint {
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    #sq-step-0 .sq-actions {
+      margin-top: 0;
+    }
+    .lp-strip {
+      padding-top: 4px;
+      padding-bottom: 28px;
+    }
+
     .sq-step { padding: 32px 20px 24px; }
     .sq-step.state-enter { transform: translate(-50%, calc(-50% + 20px)); }
     .sq-step.state-exit  { transform: translate(-50%, calc(-50% - 20px)); }
