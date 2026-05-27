@@ -120,9 +120,21 @@
 
   var VSL_MEDIA_ID = 'yryb89qho1';
 
+  /** Wistia may send 0–1 or 0–100; normalize to 0–1. */
+  function normalizePercent(n) {
+    if (n == null || n === '') return null;
+    var v = Number(n);
+    if (isNaN(v)) return null;
+    return v > 1 ? v / 100 : v;
+  }
+
   function onVslPast25(detail) {
-    var pct = detail.percent != null ? detail.percent : detail.percentWatched;
-    var last = detail.lastPercent != null ? detail.lastPercent : detail.lastPercentWatched;
+    var pct = normalizePercent(
+      detail.percent != null ? detail.percent : detail.percentWatched
+    );
+    var last = normalizePercent(
+      detail.lastPercent != null ? detail.lastPercent : detail.lastPercentWatched
+    );
     if (pct == null) return;
     if (last != null && last >= 0.25) return;
     if (pct >= 0.25) trackVsl25();
@@ -137,17 +149,21 @@
   }
 
   function initVslWatch() {
-    var player = document.querySelector('wistia-player[media-id="' + VSL_MEDIA_ID + '"]');
-    if (player) {
-      if (global.customElements && global.customElements.whenDefined) {
-        global.customElements.whenDefined('wistia-player').then(function () {
-          bindAuroraPlayer(player);
-        }).catch(function () {
-          bindAuroraPlayer(player);
-        });
-      } else {
+    var selector = 'wistia-player[media-id="' + VSL_MEDIA_ID + '"]';
+
+    function attachToPlayer() {
+      var player = document.querySelector(selector);
+      if (!player) return;
+      bindAuroraPlayer(player);
+      player.addEventListener('api-ready', function () {
         bindAuroraPlayer(player);
-      }
+      }, { once: true });
+    }
+
+    if (global.customElements && global.customElements.whenDefined) {
+      global.customElements.whenDefined('wistia-player').then(attachToPlayer).catch(attachToPlayer);
+    } else {
+      attachToPlayer();
     }
 
     /* Legacy embed API fallback */
