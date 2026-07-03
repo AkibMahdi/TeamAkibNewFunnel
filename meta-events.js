@@ -32,13 +32,11 @@
     }
   }
 
-  /** Qualified = show-up yes, commitment 7+, budget above $0–1k tier. */
+  /** Qualified = accepts the calendar standard + ready to start now or within 30 days. */
   function isQualifiedLead(data) {
     if (!data) return false;
     if (data.show_up_confirmation !== 'yes') return false;
-    var commitment = parseInt(data.commitment_score, 10);
-    if (isNaN(commitment) || commitment < 7) return false;
-    if (data.investment_readiness === 'ready') return false;
+    if (data.investment_readiness !== 'ready-now' && data.investment_readiness !== '30-days') return false;
     return true;
   }
 
