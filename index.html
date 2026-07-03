@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TA Coaching — ADHD Performance Coaching</title>
-<meta name="description" content="Data-driven physique coaching for men with ADHD. Structure, accountability, and biomarker-informed training and nutrition.">
-<meta property="og:title" content="TA Coaching — ADHD Performance Coaching">
-<meta property="og:description" content="Build a leaner, stronger, higher-output body with a system built around your brain, your schedule, and your biomarkers.">
+<title>TA Coaching — Physique Coaching for Busy Professionals & Founders</title>
+<meta name="description" content="Data-driven physique coaching for men who work 60-hour weeks and refuse to look like it. Bloodwork-informed, built around your calendar. 400+ transformations.">
+<meta property="og:title" content="TA Coaching | Run Your Body Like You Run Your Business">
+<meta property="og:description" content="Physique coaching built for founders, operators, and professionals. You delegate everything else — delegate this.">
 <meta property="og:image" content="https://www.teamakib.org/og-image.png">
 <meta property="og:url" content="https://www.teamakib.org/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TA Coaching — ADHD Performance Coaching">
-<meta name="twitter:description" content="Data-driven physique coaching for men with ADHD. Structure, accountability, and biomarker-informed optimization.">
+<meta name="twitter:title" content="TA Coaching | Run Your Body Like You Run Your Business">
+<meta name="twitter:description" content="Physique coaching built for founders, operators, and professionals. You delegate everything else — delegate this.">
 <meta name="twitter:image" content="https://www.teamakib.org/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -336,6 +336,22 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     color: var(--orange);
     font-weight: 600;
   }
+
+  .hero-stat-bar {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .hero-stat-dot { color: var(--orange); }
 
   /* ============================================
      LANDING SECTIONS (below form)
@@ -676,6 +692,16 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   .lp-tf-item img {
     width: 100%;
     display: block;
+  }
+  .lp-tf-name {
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--dark);
+    border-top: 1px solid var(--border);
   }
 
   /* Video testimonials */
@@ -1653,19 +1679,28 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
   </div>
 
   <!-- Stage: all steps live here -->
+  <span id="apply"></span>
   <div class="sq-stage" id="sq-stage">
 
     <!-- STEP 0: Hero -->
     <div class="sq-step state-active" data-step="0" id="sq-step-0">
-      <p class="sq-city-tag" id="sq-city-tag">TA Coaching<span id="sq-city-suffix"></span></p>
-      <h1 class="intro-headline">Data-driven physique coaching<br><em>for men with ADHD.</em></h1>
-      <p class="sq-subhead">Build a leaner, stronger, higher-output body with a system built around your brain, your schedule, and your biomarkers.</p>
-      <div class="sq-qnum">ADHD Performance Qualifier — Limited Spots</div>
-      <p class="sq-hint">Applications are reviewed before booking.</p>
+      <p class="sq-city-tag" id="sq-city-tag">Physique Coaching for Founders, Operators &amp; Professionals<span id="sq-city-suffix"></span></p>
+      <h1 class="intro-headline">You optimize your business with data.<br><em>Your body still runs on guesswork.</em></h1>
+      <p class="sq-subhead">Data-driven physique coaching for men who work 60-hour weeks and refuse to look like it. Built around your calendar, your bloodwork, and your standards — not a template.</p>
       <div class="sq-actions" style="justify-content: center;">
         <button class="sq-next" onclick="sqNext()">
-          Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
+          Apply for Coaching <span class="arrow">→</span>
         </button>
+      </div>
+      <p class="sq-hint" style="text-align:center; margin-top:14px;">2-minute application. Reviewed personally. Not everyone gets a call.</p>
+      <div class="hero-stat-bar">
+        <span>400+ Client Transformations</span>
+        <span class="hero-stat-dot">·</span>
+        <span>5+ Years Coaching</span>
+        <span class="hero-stat-dot">·</span>
+        <span>4.9★ Client Rating</span>
+        <span class="hero-stat-dot">·</span>
+        <span>Most clients: founders, operators &amp; senior professionals</span>
       </div>
     </div>
 
@@ -1711,27 +1746,21 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       <h2 class="sq-question">How old <em>are you?</em></h2>
       <p class="sq-hint">Your training and nutrition protocols are calibrated to your age.</p>
       <div class="sq-choices" id="sq-age">
-        <div class="sq-choice" data-val="20-24" onclick="sqChoose(this, 'sq-age')">
-            <span class="sq-choice-key">A</span> 20-24
-          </div>
-        <div class="sq-choice" data-val="25-29" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">B</span> 25–29
+        <div class="sq-choice" data-val="under-25" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">A</span> Under 25
         </div>
-        <div class="sq-choice" data-val="30-34" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">C</span> 30–34
+        <div class="sq-choice" data-val="25-34" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">B</span> 25–34
         </div>
-        <div class="sq-choice" data-val="35-39" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">D</span> 35–39
+        <div class="sq-choice" data-val="35-44" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">C</span> 35–44
         </div>
-        <div class="sq-choice" data-val="40-44" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">E</span> 40–44
+        <div class="sq-choice" data-val="45-54" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">D</span> 45–54
         </div>
-        <div class="sq-choice" data-val="45-50" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">F</span> 45–50
+        <div class="sq-choice" data-val="55+" onclick="sqChoose(this, 'sq-age')">
+          <span class="sq-choice-key">E</span> 55+
         </div>
-        <!-- <div class="sq-choice" data-val="50+" onclick="sqChoose(this, 'sq-age')">
-          <span class="sq-choice-key">F</span> 50+
-        </div> -->
       </div>
       <p class="sq-error-msg" id="sq-err-3">Please select an option.</p>
       <div class="sq-actions">
@@ -1743,24 +1772,24 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <!-- STEP 4: Primary Goal -->
     <div class="sq-step state-enter" data-step="4" id="sq-step-4">
       <div class="sq-qnum">Question 4</div>
-      <h2 class="sq-question">What's your <em>primary goal?</em></h2>
+      <h2 class="sq-question">What's the <em>primary goal?</em></h2>
       <p class="sq-hint">Be honest. There are no wrong answers here.</p>
-      <div class="sq-choices" id="sq-goal">
-        <div class="sq-choice" data-val="muscle" onclick="sqChoose(this, 'sq-goal')">
-          <span class="sq-choice-key">A</span> Build serious muscle & size
+      <div class="sq-choices cols-1" id="sq-goal">
+        <div class="sq-choice" data-val="fat-loss" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">A</span> Lose fat and stay lean year-round
         </div>
-        <div class="sq-choice" data-val="fat" onclick="sqChoose(this, 'sq-goal')">
-          <span class="sq-choice-key">B</span> Lose fat, get shredded
+        <div class="sq-choice" data-val="muscle" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">B</span> Build muscle without living in the gym
         </div>
         <div class="sq-choice" data-val="recomp" onclick="sqChoose(this, 'sq-goal')">
-          <span class="sq-choice-key">C</span> Body recomp — both
+          <span class="sq-choice-key">C</span> Body recomposition — drop fat, add muscle
         </div>
         <div class="sq-choice" data-val="performance" onclick="sqChoose(this, 'sq-goal')">
-          <span class="sq-choice-key">D</span> Peak energy & performance
+          <span class="sq-choice-key">D</span> Energy, focus &amp; longevity — perform at work like I do in the gym
         </div>
-        <div class="sq-choice" data-val="Bodybuilding Show" onclick="sqChoose(this, 'sq-goal')">
-            <span class="sq-choice-key">e</span> Show prep / Bodybuilding
-          </div>
+        <div class="sq-choice" data-val="compete" onclick="sqChoose(this, 'sq-goal')">
+          <span class="sq-choice-key">E</span> Compete / take my physique to the highest level
+        </div>
       </div>
       <p class="sq-error-msg" id="sq-err-4">Please select an option.</p>
       <div class="sq-actions">
@@ -1772,20 +1801,23 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <!-- STEP 5: Obstacle -->
     <div class="sq-step state-enter" data-step="5" id="sq-step-5">
       <div class="sq-qnum">Question 5</div>
-      <h2 class="sq-question">Biggest obstacle <em>right now?</em></h2>
-      <p class="sq-hint">What's kept you from getting where you want to be?</p>
-      <div class="sq-choices" id="sq-obstacle">
-        <div class="sq-choice" data-val="time" onclick="sqChoose(this, 'sq-obstacle')">
-          <span class="sq-choice-key">A</span> No time / insane schedule
+      <h2 class="sq-question">What's actually been <em>in the way?</em></h2>
+      <p class="sq-hint">Be honest — this shapes your protocol.</p>
+      <div class="sq-choices cols-1" id="sq-obstacle">
+        <div class="sq-choice" data-val="long-hours" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">A</span> 50–60+ hour weeks — training and food planning fall off first
         </div>
-        <div class="sq-choice" data-val="results" onclick="sqChoose(this, 'sq-obstacle')">
-          <span class="sq-choice-key">B</span> Tried before, no results
+        <div class="sq-choice" data-val="travel" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">B</span> Constant travel — I'm in hotels and airports half the month
         </div>
-        <div class="sq-choice" data-val="start" onclick="sqChoose(this, 'sq-obstacle')">
-          <span class="sq-choice-key">C</span> Don't know where to start
+        <div class="sq-choice" data-val="dinners-social" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">C</span> Client dinners, business meals, and a social calendar that isn't slowing down
         </div>
-        <div class="sq-choice" data-val="accountability" onclick="sqChoose(this, 'sq-obstacle')">
-          <span class="sq-choice-key">D</span> Accountability / consistency
+        <div class="sq-choice" data-val="stress-sleep" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">D</span> Stress and poor sleep from work are wrecking my recovery
+        </div>
+        <div class="sq-choice" data-val="generic-plan" onclick="sqChoose(this, 'sq-obstacle')">
+          <span class="sq-choice-key">E</span> Had a coach before — the generic plan didn't survive my schedule
         </div>
       </div>
       <p class="sq-error-msg" id="sq-err-5">Please select an option.</p>
@@ -1795,24 +1827,26 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- STEP 6: Commitment scale 1–10 -->
+    <!-- STEP 6: Occupation -->
     <div class="sq-step state-enter" data-step="6" id="sq-step-6">
       <div class="sq-qnum">Question 6</div>
-      <h2 class="sq-question">On a scale of <em>1–10</em>, how committed are you to investing in yourself right now if we can get you to your health &amp; fitness goals?</h2>
-      <p class="sq-hint">Tap a number — there are no right or wrong answers, just be honest.</p>
-      <div class="sq-choices sq-scale" id="sq-commitment">
-        <div class="sq-choice sq-scale-btn" data-val="1"  onclick="sqChoose(this, 'sq-commitment')">1</div>
-        <div class="sq-choice sq-scale-btn" data-val="2"  onclick="sqChoose(this, 'sq-commitment')">2</div>
-        <div class="sq-choice sq-scale-btn" data-val="3"  onclick="sqChoose(this, 'sq-commitment')">3</div>
-        <div class="sq-choice sq-scale-btn" data-val="4"  onclick="sqChoose(this, 'sq-commitment')">4</div>
-        <div class="sq-choice sq-scale-btn" data-val="5"  onclick="sqChoose(this, 'sq-commitment')">5</div>
-        <div class="sq-choice sq-scale-btn" data-val="6"  onclick="sqChoose(this, 'sq-commitment')">6</div>
-        <div class="sq-choice sq-scale-btn" data-val="7"  onclick="sqChoose(this, 'sq-commitment')">7</div>
-        <div class="sq-choice sq-scale-btn" data-val="8"  onclick="sqChoose(this, 'sq-commitment')">8</div>
-        <div class="sq-choice sq-scale-btn" data-val="9"  onclick="sqChoose(this, 'sq-commitment')">9</div>
-        <div class="sq-choice sq-scale-btn" data-val="10" onclick="sqChoose(this, 'sq-commitment')">10</div>
+      <h2 class="sq-question">What best <em>describes you?</em></h2>
+      <p class="sq-hint">Most of the roster runs companies, teams, or 50-hour weeks.</p>
+      <div class="sq-choices cols-1" id="sq-occupation">
+        <div class="sq-choice" data-val="founder" onclick="sqChoose(this, 'sq-occupation')">
+          <span class="sq-choice-key">A</span> Founder / business owner
+        </div>
+        <div class="sq-choice" data-val="executive" onclick="sqChoose(this, 'sq-occupation')">
+          <span class="sq-choice-key">B</span> Executive / senior operator
+        </div>
+        <div class="sq-choice" data-val="professional" onclick="sqChoose(this, 'sq-occupation')">
+          <span class="sq-choice-key">C</span> Professional (engineering, finance, law, medicine, sales, etc.)
+        </div>
+        <div class="sq-choice" data-val="other" onclick="sqChoose(this, 'sq-occupation')">
+          <span class="sq-choice-key">D</span> Other — I'll explain on the call
+        </div>
       </div>
-      <p class="sq-error-msg" id="sq-err-6">Please select a number.</p>
+      <p class="sq-error-msg" id="sq-err-6">Please select an option.</p>
       <div class="sq-actions">
         <button class="sq-back" onclick="sqBack()">← Back</button>
         <button class="sq-next" onclick="sqNext()">Next <span class="arrow">→</span></button>
@@ -1821,24 +1855,24 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     <div class="sq-step state-enter" data-step="7" id="sq-step-7">
         <div class="sq-qnum">Question 7</div>
-        <h2 class="sq-question">During the call, if you are confident that my program is the answer to your goals. How much would you have saved up to invest today? (USD)</h2>
-        <p class="sq-hint">Be honest. This helps us match you to the right program structure.</p>
+        <h2 class="sq-question">Commitment <em>check.</em></h2>
+        <p class="sq-hint">Coaching is a serious investment — in money, and more importantly in doing the work. If we're a fit on the call, are you in a position to move forward?</p>
         <div class="sq-choices cols-1" id="sq-invest">
-          <div class="sq-choice" data-val="ready" onclick="sqChoose(this, 'sq-invest')">
+          <div class="sq-choice" data-val="ready-now" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">A</span>
-            <span> <strong style="color:var(--text)">I have $0-$1000 saved up</strong> </span>
+            <span><strong style="color:var(--text)">Yes — if the fit is right, I'm ready to start</strong></span>
           </div>
-          <div class="sq-choice" data-val="if-right" onclick="sqChoose(this, 'sq-invest')">
+          <div class="sq-choice" data-val="30-days" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">B</span>
-            <span><strong style="color:var(--text)">I have $1000-$3000 saved up</strong> </span>
+            <span><strong style="color:var(--text)">Yes — but I'd be starting within the next 30 days</strong></span>
           </div>
-          <div class="sq-choice" data-val="maybe" onclick="sqChoose(this, 'sq-invest')">
+          <div class="sq-choice" data-val="review-budget" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">C</span>
-            <span><strong style="color:var(--text)">I have $3000-$5000 saved up</strong></span>
+            <span><strong style="color:var(--text)">I'd need to review the budget first</strong></span>
           </div>
-          <div class="sq-choice" data-val="no" onclick="sqChoose(this, 'sq-invest')">
+          <div class="sq-choice" data-val="researching" onclick="sqChoose(this, 'sq-invest')">
             <span class="sq-choice-key">D</span>
-            <span><strong style="color:var(--text)">I have $5000+ saved up</strong></span>
+            <span><strong style="color:var(--text)">Just researching for now</strong></span>
           </div>
         </div>
         <p class="sq-error-msg" id="sq-err-7">Please select an option.</p>
@@ -1851,14 +1885,14 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <!-- STEP 8: Show-up confirmation -->
     <div class="sq-step state-enter" data-step="8" id="sq-step-8">
       <div class="sq-qnum">Question 8 — Final</div>
-      <h2 class="sq-question">Confirm you understand that if you <em>DO NOT show up</em> to the call without notice — any calls you book in the future will be cancelled.</h2>
-      <p class="sq-hint">We protect our coaches' time. Please confirm before submitting.</p>
+      <h2 class="sq-question">The calendar <em>standard.</em></h2>
+      <p class="sq-hint">I hold your call slot exclusively and prepare for it in advance — the same way you'd expect anyone to treat time on your calendar. If something comes up, I need 12 hours' notice to rebook.</p>
       <div class="sq-choices cols-1" id="sq-confirm">
         <div class="sq-choice" data-val="yes" onclick="sqChoose(this, 'sq-confirm')">
-          <span class="sq-choice-key">A</span> Yes — I understand
+          <span class="sq-choice-key">A</span> Understood — I'll show up or give notice
         </div>
         <div class="sq-choice" data-val="no" onclick="sqChoose(this, 'sq-confirm')">
-          <span class="sq-choice-key">B</span> No
+          <span class="sq-choice-key">B</span> I can't commit to that right now
         </div>
       </div>
       <p class="sq-error-msg" id="sq-err-8">Please select Yes or No.</p>
@@ -1877,7 +1911,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         Application
         <em>Received.</em>
       </h2>
-      <p class="sq-complete-sub">Your application is under review. Book your strategy call now — spots are extremely limited.</p>
+      <p class="sq-complete-sub">Application received. I review every application personally — lock in your call now while a slot is open. Limited roster.</p>
       <button class="btn-primary" onclick="showPage('booking', document.getElementById('nav-booking')); setTimeout(function(){ document.getElementById('calendly-widget').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);">
         Book Your Call Now <span class="btn-arrow">→</span>
       </button>
@@ -1895,15 +1929,15 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <div class="lp-block lp-proof">
       <div class="lp-block-header">
         <div class="lp-eyebrow">Client Results</div>
-        <h2 class="lp-title">Men who stopped restarting and started <em>running a system.</em></h2>
-        <p class="lp-subtitle">These results came from structure, accountability, smarter nutrition, and better decisions — not more motivation.</p>
+        <h2 class="lp-title">Men with your calendar. <em>These results.</em></h2>
+        <p class="lp-subtitle">400+ transformations. Most of my roster runs companies, teams, or 50-hour weeks. The system is built for exactly that.</p>
       </div>
       <div class="lp-strip">
         <div class="lp-strip-row">
-          <div class="lp-strip-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
-          <div class="lp-strip-item"><img src="Transformations/3.png" alt="Client transformation" loading="lazy"></div>
-          <div class="lp-strip-item"><img src="Transformations/7.png" alt="Client transformation" loading="lazy"></div>
-          <div class="lp-strip-item"><img src="Transformations/12.png" alt="Client transformation" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/11.png" alt="Lance — Entrepreneur" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/12.png" alt="Alex — Entrepreneur" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/2.png" alt="Noah — Business Operations" loading="lazy"></div>
+          <div class="lp-strip-item"><img src="Transformations/4.png" alt="Matias — Business Operations" loading="lazy"></div>
         </div>
       </div>
     </div>
@@ -1912,93 +1946,62 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     <div class="lp-block">
       <div class="lp-block-header">
         <div class="lp-eyebrow">The Real Problem</div>
-        <h2 class="lp-title">Most fitness plans fail ADHD brains because they depend on <em>perfect consistency.</em></h2>
+        <h2 class="lp-title">Why your last three attempts <em>didn't stick.</em></h2>
+        <p class="lp-subtitle">Most fitness plans are built for people with time. You have a 7am meeting, a client dinner at 8, and two time zones next month. So here's what actually happens:</p>
       </div>
-      <div class="lp-problem-grid">
-        <div class="lp-problem-item">Decision fatigue</div>
-        <div class="lp-problem-item">Overthinking</div>
-        <div class="lp-problem-item">Impulsive eating</div>
-        <div class="lp-problem-item">Boredom with routines</div>
-        <div class="lp-problem-item">Chaotic schedules</div>
-        <div class="lp-problem-item">All-or-nothing cycles</div>
-        <div class="lp-problem-item">Restarting every Monday</div>
-        <div class="lp-problem-item">Too much guessing</div>
+      <div class="lp-mech-grid">
+        <div class="lp-mech-card">
+          <h3 class="lp-mech-h">The plan dies on travel weeks.</h3>
+          <p class="lp-mech-p">It worked for 12 days. Then a work trip, a launch, a fire to put out — and the whole system collapsed because it was never built to survive your calendar in the first place.</p>
+        </div>
+        <div class="lp-mech-card">
+          <h3 class="lp-mech-h">Cookie-cutter macros meet real life.</h3>
+          <p class="lp-mech-p">Your meal plan didn't account for client dinners, catered lunches, or the fact that you don't have 90 minutes to prep food on a Sunday. So you "wing it," and winging it compounds the wrong direction.</p>
+        </div>
+        <div class="lp-mech-card">
+          <h3 class="lp-mech-h">Your coach guessed.</h3>
+          <p class="lp-mech-p">No bloodwork. No look at your testosterone, thyroid, lipids, or stress markers. Just a template with your name typed at the top — the same plan they gave the 22-year-old before you.</p>
+        </div>
+        <div class="lp-mech-card">
+          <h3 class="lp-mech-h">Nobody held the standard.</h3>
+          <p class="lp-mech-p">A check-in form once a week isn't accountability. You run teams. You know the difference between reporting and management.</p>
+        </div>
       </div>
+      <p class="lp-subtitle" style="text-align:center; margin-top:32px;">None of this is a discipline problem. You have more discipline than 99% of people — it's why your business works. <strong style="color:var(--text)">It's an engineering problem. The system wasn't built for your load.</strong></p>
     </div>
 
-    <!-- This is for you if -->
-    <div class="lp-block">
-      <div class="lp-block-header">
-        <div class="lp-eyebrow">Fit Check</div>
-        <h2 class="lp-title">This is for you if your brain makes fitness <em>harder than it should be.</em></h2>
-      </div>
-      <ul class="lp-bullet-list">
-        <li>You know what to do but struggle to execute.</li>
-        <li>You start strong, then disappear.</li>
-        <li>You overthink food, training, supplements, and the perfect plan.</li>
-        <li>You eat impulsively when stressed, bored, or overstimulated.</li>
-        <li>You get bored of routines quickly.</li>
-        <li>You need accountability or you fall off.</li>
-        <li>You care about data, hormones, recovery, health markers, and long-term performance.</li>
-      </ul>
-    </div>
-
-    <!-- Method + four pillars -->
+    <!-- The Fix -->
     <div class="lp-mech">
       <div class="lp-mech-header">
-        <div class="lp-eyebrow">The Approach</div>
-        <h2 class="lp-title">Structure first. Accountability always. Data when it matters. <em>Optimization once the system is running.</em></h2>
-        <p class="lp-subtitle">TA Coaching removes friction first, then uses data to optimize what most coaches guess at.</p>
+        <div class="lp-eyebrow">How It Works</div>
+        <h2 class="lp-title">A system engineered around your week — <em>not the other way around.</em></h2>
       </div>
 
       <div class="lp-mech-grid">
         <div class="lp-mech-card">
           <div class="lp-mech-num">01</div>
-          <h3 class="lp-mech-h">ADHD Execution System</h3>
-          <p class="lp-mech-p">Clear training, meals, steps, check-ins, reminders, and weekly targets — built so you know exactly what to do without decision overload.</p>
+          <h3 class="lp-mech-h">We start with data, not vibes.</h3>
+          <p class="lp-mech-p">Comprehensive bloodwork review — hormones, thyroid, lipids, inflammation, recovery markers. Your protocol is built off your physiology and your stress load, not a template.</p>
         </div>
         <div class="lp-mech-card">
           <div class="lp-mech-num">02</div>
-          <h3 class="lp-mech-h">Accountability Before the Spiral</h3>
-          <p class="lp-mech-p">Feedback loops, communication, adjustments, and check-ins before one bad day becomes a full reset.</p>
+          <h3 class="lp-mech-h">Training that fits the calendar you actually have.</h3>
+          <p class="lp-mech-p">3–5 sessions a week, 45–60 minutes, programmed around your schedule, travel, and any old injuries. Hotel-gym contingency plans included. If a week blows up, the plan flexes — it doesn't break.</p>
         </div>
         <div class="lp-mech-card">
           <div class="lp-mech-num">03</div>
-          <h3 class="lp-mech-h">Bloodwork-Informed Decision Making</h3>
-          <p class="lp-mech-p">Hormones, lipids, glucose markers, inflammation, organ health, micronutrients, sleep, stress, and recovery — used to guide training and nutrition adjustments, not hype.</p>
+          <h3 class="lp-mech-h">Nutrition with zero daily decision-making.</h3>
+          <p class="lp-mech-p">Exact meals, exact portions, built around foods you'll actually eat — including a protocol for client dinners and travel days. You'll spend less than 5 minutes a day thinking about food. That's the point.</p>
         </div>
         <div class="lp-mech-card">
           <div class="lp-mech-num">04</div>
-          <h3 class="lp-mech-h">Advanced Context-Aware Optimization</h3>
-          <p class="lp-mech-p">Natural, physician-managed TRT, enhanced/bodybuilding context, recovery load, training stress, appetite, blood pressure, performance, and health markers — optimized around your real situation.</p>
+          <h3 class="lp-mech-h">Management, not check-in forms.</h3>
+          <p class="lp-mech-p">Direct access to me. Weekly data review — weight trends, photos, biofeedback, performance. Adjustments made proactively, the way you'd want your own operators to run a system.</p>
         </div>
       </div>
     </div>
 
-    <!-- Advanced optimization -->
-    <div class="lp-block">
-      <div class="lp-block-header">
-        <div class="lp-eyebrow">Advanced Layer</div>
-        <h2 class="lp-title">Data over <em>guessing.</em></h2>
-      </div>
-      <div class="lp-tag-grid">
-        <span class="lp-tag">Training performance</span>
-        <span class="lp-tag">Nutrition response</span>
-        <span class="lp-tag">Sleep &amp; recovery</span>
-        <span class="lp-tag">Digestion &amp; appetite</span>
-        <span class="lp-tag">Blood pressure</span>
-        <span class="lp-tag">Hormone context</span>
-        <span class="lp-tag">Lipid &amp; cardiovascular markers</span>
-        <span class="lp-tag">Liver &amp; kidney markers</span>
-        <span class="lp-tag">Micronutrients</span>
-        <span class="lp-tag">Natural / TRT / enhanced context</span>
-        <span class="lp-tag">Supplementation strategy</span>
-        <span class="lp-tag">Long-term health &amp; performance</span>
-      </div>
-      <p class="lp-disclaimer">TA Coaching does not prescribe medication or replace medical care. We help structure the fitness, nutrition, recovery, and performance side around your real data and physician-guided health context.</p>
-    </div>
-
-    <!-- Why different -->
+    <!-- Comparison -->
     <div class="lp-block">
       <div class="lp-block-header">
         <div class="lp-eyebrow">Why TA Coaching</div>
@@ -2006,78 +2009,109 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
       </div>
       <div class="lp-compare">
         <div class="lp-compare-row">
-          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Guesses.</div></div>
-          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Measures.</div></div>
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">Programming: a template with your name on it.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Built off your bloodwork, schedule &amp; injury history.</div></div>
         </div>
         <div class="lp-compare-row">
-          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Shames inconsistency.</div></div>
-          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Builds systems around it.</div></div>
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">Assumes free time and low stress.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Assumes a 60-hour week and real responsibilities.</div></div>
         </div>
         <div class="lp-compare-row">
-          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Ignores ADHD.</div></div>
-          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Accounts for it.</div></div>
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">Nutrition: "hit these macros."</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Exact meals, dinner-out and travel protocols.</div></div>
         </div>
         <div class="lp-compare-row">
-          <div><div class="lp-compare-label">Generic coaching</div><div class="lp-compare-generic">Stops at macros.</div></div>
-          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Looks at training, nutrition, recovery, biomarkers, and execution.</div></div>
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">Progress: guesses.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Measured — labs, trends, photos, performance.</div></div>
         </div>
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">Accountability: a weekly form.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">Direct line to your coach, proactive adjustments.</div></div>
+        </div>
+        <div class="lp-compare-row">
+          <div><div class="lp-compare-label">Typical Online Coaching</div><div class="lp-compare-generic">When life happens: the plan breaks.</div></div>
+          <div><div class="lp-compare-label">TA Coaching</div><div class="lp-compare-ta">The plan flexes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fit check -->
+    <div class="lp-block">
+      <div class="lp-block-header">
+        <div class="lp-eyebrow">Fit Check</div>
+        <h2 class="lp-title">This works if <em>you're this guy.</em></h2>
+      </div>
+      <ul class="lp-bullet-list">
+        <li>You execute at a high level in business, but your health has been running on deprioritized autopilot — and you know it.</li>
+        <li>You don't need motivation. You need a system that survives your calendar.</li>
+        <li>You want data and a direct answer, not vibes and a PDF.</li>
+        <li>You take ownership. When something's on you, you say so and fix it.</li>
+        <li>You're willing to invest in the last area of your life you haven't systematized.</li>
+      </ul>
+      <div class="lp-block-header" style="margin-top:48px;">
+        <h2 class="lp-title" style="font-size:clamp(28px,4vw,44px);">This is <em>not</em> for you if</h2>
+      </div>
+      <ul class="lp-bullet-list">
+        <li>You're looking for a cheap plan, a quick hack, or a discount.</li>
+        <li>You want someone to blame when you skip the work.</li>
+        <li>You need to be chased. I hold the standard — I don't babysit.</li>
+      </ul>
+      <p class="lp-subtitle" style="text-align:center; margin-top:32px;">If you read the first list and thought "that's me" — apply below. If you read the second list and got defensive, save us both the call.</p>
+      <div style="text-align:center; margin-top:28px;">
+        <button class="lp-cta-btn" onclick="scrollToForm()">Apply for Coaching <span class="arrow">→</span></button>
       </div>
     </div>
 
     <!-- Client outcomes -->
     <div class="lp-tf">
       <div class="lp-tf-header">
-        <div class="lp-eyebrow">Social Proof</div>
+        <div class="lp-eyebrow">Transformations</div>
         <h2 class="lp-title">The system changes <em>the outcome.</em></h2>
-        <p class="lp-subtitle">Consistency, schedule structure, recovery, energy, bloodwork, strength, and confidence — built through execution first, then optimization.</p>
-      </div>
-      <div class="lp-quote-row">
-        <blockquote class="lp-quote">"I finally stopped restarting every month. The check-ins and clear targets are what my brain needed."<cite>— Client</cite></blockquote>
-        <blockquote class="lp-quote">"Less guessing, more structure. Training and nutrition finally matched my actual schedule."<cite>— Client</cite></blockquote>
       </div>
       <div class="lp-tf-grid">
-        <div class="lp-tf-item"><img src="Transformations/1.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/2.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/11.png" alt="Lance — Entrepreneur" loading="lazy"><div class="lp-tf-name">Lance — Entrepreneur</div></div>
+        <div class="lp-tf-item"><img src="Transformations/12.png" alt="Alex — Entrepreneur" loading="lazy"><div class="lp-tf-name">Alex — Entrepreneur</div></div>
+        <div class="lp-tf-item"><img src="Transformations/2.png" alt="Noah — Business Operations" loading="lazy"><div class="lp-tf-name">Noah — Business Operations</div></div>
+        <div class="lp-tf-item"><img src="Transformations/4.png" alt="Matias — Business Operations" loading="lazy"><div class="lp-tf-name">Matias — Business Operations</div></div>
+        <div class="lp-tf-item"><img src="Transformations/1.png" alt="Shams — Software Engineer" loading="lazy"><div class="lp-tf-name">Shams — Software Engineer</div></div>
+        <div class="lp-tf-item"><img src="Transformations/5.png" alt="Jeff — Software Engineer" loading="lazy"><div class="lp-tf-name">Jeff — Software Engineer</div></div>
+        <div class="lp-tf-item"><img src="Transformations/6.png" alt="Hamza — State Trooper" loading="lazy"><div class="lp-tf-name">Hamza — State Trooper</div></div>
+        <div class="lp-tf-item"><img src="Transformations/10.png" alt="Adriano — Blue Collar" loading="lazy"><div class="lp-tf-name">Adriano — Blue Collar</div></div>
+        <div class="lp-tf-item"><img src="Transformations/13.png" alt="Parker" loading="lazy"><div class="lp-tf-name">Parker</div></div>
         <div class="lp-tf-item"><img src="Transformations/3.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/4.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/5.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/6.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/7.png" alt="Client transformation" loading="lazy"></div>
         <div class="lp-tf-item"><img src="Transformations/8.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/9.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/10.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/11.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/12.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/13.png" alt="Client transformation" loading="lazy"></div>
-        <div class="lp-tf-item"><img src="Transformations/14.png" alt="Client transformation" loading="lazy"></div>
+        <div class="lp-tf-item"><img src="Transformations/7.png" alt="Gary — Med Student" loading="lazy"><div class="lp-tf-name">Gary — Med Student</div></div>
+        <div class="lp-tf-item"><img src="Transformations/9.png" alt="Conan — College Student" loading="lazy"><div class="lp-tf-name">Conan — College Student</div></div>
+        <div class="lp-tf-item"><img src="Transformations/14.png" alt="Jeremy — Engineering Student" loading="lazy"><div class="lp-tf-name">Jeremy — Engineering Student</div></div>
       </div>
+      <p class="lp-subtitle" style="text-align:center; margin-top:28px;">400+ transformations. Most of my roster runs companies, teams, or 50-hour weeks. The system is built for exactly that.</p>
     </div>
 
     <!-- Video testimonials -->
     <div class="lp-vt">
       <div class="lp-vt-header">
         <div class="lp-eyebrow">In Their Words</div>
-        <h2 class="lp-title">Hear it from <em>men running the system.</em></h2>
+        <h2 class="lp-title">Hear it from men <em>with your calendar.</em></h2>
       </div>
       <div class="lp-vt-grid">
         <div class="lp-vt-item">
           <video controls preload="metadata" playsinline>
-            <source src="Video_Testemonials/NOAHTESTEMONIAL.mp4" type="video/mp4">
+            <source src="testimonials/NOAHTESTEMONIAL.mp4" type="video/mp4">
           </video>
         </div>
         <div class="lp-vt-item">
           <video controls preload="metadata" playsinline>
-            <source src="Video_Testemonials/68c2fb657c5969434b61cad8.mp4" type="video/mp4">
+            <source src="testimonials/68c2fb657c5969434b61cad8.mp4" type="video/mp4">
           </video>
         </div>
         <div class="lp-vt-item">
           <video controls preload="metadata" playsinline>
-            <source src="Video_Testemonials/68cc720ef782ba4ad7be993f.mp4" type="video/mp4">
+            <source src="testimonials/68cc720ef782ba4ad7be993f.mp4" type="video/mp4">
           </video>
         </div>
         <div class="lp-vt-item">
           <video controls preload="metadata" playsinline>
-            <source src="Video_Testemonials/68cf3d680563401c0a23ab6b.mp4" type="video/mp4">
+            <source src="testimonials/68cf3d680563401c0a23ab6b.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -2093,73 +2127,52 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         <div class="faq-list">
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Is this only for men officially diagnosed with ADHD?
+              How much time does this actually take per week?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">No. Many clients relate to ADHD patterns — execution issues, impulsivity, boredom with routines, chaotic schedules — whether or not they have a formal diagnosis. The qualifier helps us see if the system is a fit.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Training: 3–5 sessions, 45–60 minutes each, scheduled around your calendar. Nutrition: under 5 minutes a day once your plan is set — the meals are decided, portions are exact, and there's a protocol for eating out. Check-ins: about 10 minutes a week. The entire system is designed to reduce the time and mental bandwidth you spend on this, not add to it.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Do I need bloodwork before starting?
+              I travel one to two weeks a month. Does this still work?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">No. Send what you have if available. We build execution and structure first, then use labs to refine decisions when they matter.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes — that's most of my roster. You get hotel-gym programming, travel-day nutrition targets, and restaurant protocols. The plan is built assuming your calendar will blow up sometimes, so when it does, the system flexes instead of breaking.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Do you work with natural clients?
+              I've hired coaches before. What's actually different?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Yes. Natural clients are common. The system is built around structure, accountability, training, nutrition, recovery, and data — not enhancement requirements.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Three things. Your protocol is built off your bloodwork and physiology, not a template. It's engineered around your real schedule — travel, dinners, stress load — instead of assuming free time. And you get management, not a weekly check-in form: direct access, proactive adjustments, and a coach who holds the standard.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Do you work with TRT/enhanced clients?
+              Do you work with guys on TRT or interested in hormone optimization?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Yes, with context. We optimize training, nutrition, recovery, and performance around physician-managed TRT or enhanced protocols — without prescribing medication.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes. A significant portion of my clients over 35 are on physician-supervised TRT or exploring it. Your bloodwork review covers the relevant markers, and your protocol accounts for it. Everything is coordinated with data, not guesswork.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Do you prescribe protocols or medication?
+              I'm not in terrible shape — I just want to look like I train. Is this overkill?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">No. TA Coaching does not prescribe medication or replace medical care. We structure fitness, nutrition, recovery, and performance around your real data and physician-guided health context.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">No — "good to great" is actually the sweet spot for this system. The leaner and busier you are, the more precision matters and the less room there is for guessing.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              What if I've failed other programs?
+              What does it cost?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">That's common here. Most failures are systems problems — too much friction, no accountability, no ADHD-aware structure — not a motivation problem.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">It's a premium, fully-managed service — priced accordingly, and it varies by protocol. We cover exact numbers on the call once I know what your situation requires. If price is the primary deciding factor, this probably isn't the right fit.</div></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              How much accountability is included?
+              How fast will I see results?
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Accountability is core — check-ins, feedback loops, and adjustments before small slips become full resets. Exact structure depends on your tier and is covered on the strategy call.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              How long does the coaching last?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Programs are built for sustained execution and optimization, not a 30-day challenge. Length and structure are discussed on your call based on your goals and starting point.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              Who is this not for?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Men looking for a cheap PDF, zero accountability, or someone to do the work for them. This is for men who want structure, follow-through, and serious optimization.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" onclick="toggleFaq(this)">
-              What happens after I apply?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">Your application is reviewed. If it's a fit, you'll book a strategy call, complete a short pre-call intake, and we'll map your execution system and next steps together.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Visible change in 4–6 weeks, a noticeably different body in 12–16. But the actual promise is a system you can run permanently — not a 12-week sprint you undo by Q3.</div></div>
           </div>
         </div>
       </div>
@@ -2167,21 +2180,19 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
 
     <!-- Final CTA -->
     <div class="lp-cta">
-      <h2 class="lp-cta-title">Ready to build a system your ADHD brain can <em>actually follow?</em></h2>
-      <p class="lp-cta-sub">Apply below if you want structure, accountability, data, and serious optimization — without pretending ADHD, stress, recovery, hormones, or real life don't matter.</p>
-      <p class="lp-cta-support">Structure. Accountability. Flexible nutrition. Intelligent training. Bloodwork-informed optimization. Advanced context when needed.</p>
+      <h2 class="lp-cta-title">Run your body like you run <em>your business.</em></h2>
+      <p class="lp-cta-sub">You've systematized everything else — revenue, ops, your calendar. This is the last thing still running on guesswork, and it's the thing everything else depends on.</p>
       <button class="lp-cta-btn" onclick="scrollToForm()">
-        Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
+        Apply for Coaching <span class="arrow">→</span>
       </button>
-      <p class="lp-cta-fine">Applications are reviewed before booking.</p>
-      <p class="lp-cta-trust">Not generic fitness coaching. A structured performance system for men who need execution first, then optimization.</p>
+      <p class="lp-cta-fine">2-minute application · Reviewed personally · Limited roster</p>
     </div>
 
   </section>
 
   <!-- Sticky mobile CTA (shows when form is scrolled out of view) -->
   <button class="lp-sticky-cta" id="lp-sticky-cta" type="button" onclick="scrollToForm()">
-    Take the 2-Minute ADHD Performance Qualifier <span class="arrow">→</span>
+    Apply for Coaching <span class="arrow">→</span>
   </button>
 
 </div>
@@ -2421,7 +2432,7 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
         3: 'sq-age',
         4: 'sq-goal',
         5: 'sq-obstacle',
-        6: 'sq-commitment',
+        6: 'sq-occupation',
         7: 'sq-invest',
         8: 'sq-confirm'
       };
@@ -2464,8 +2475,8 @@ src="https://www.facebook.com/tr?id=913536751242362&ev=PageView&noscript=1"
     formData.biggest_obstacle = selected ? selected.getAttribute('data-val') : '';
   }
   else if (step === 6) {
-    const selected = document.querySelector('#sq-commitment .sq-choice.selected');
-    formData.commitment_score = selected ? selected.getAttribute('data-val') : '';
+    const selected = document.querySelector('#sq-occupation .sq-choice.selected');
+    formData.occupation = selected ? selected.getAttribute('data-val') : '';
   }
   else if (step === 7) {
     const selected = document.querySelector('#sq-invest .sq-choice.selected');
@@ -2512,9 +2523,13 @@ async function sqSubmit() {
   formData.utm_campaign = params.get('utm_campaign') || formData.utm_campaign;
   
   try {
+    // form_submissions has no `occupation` column — it rides along in the
+    // Make webhook payload only.
+    const dbRow = Object.assign({}, formData);
+    delete dbRow.occupation;
     const { data, error } = await SUPABASE_CLIENT
       .from('form_submissions')
-      .insert([formData]);
+      .insert([dbRow]);
     
     if (error) {
       console.error('Supabase error:', error);
@@ -2580,6 +2595,11 @@ async function sqSubmit() {
 
   /* Init */
   updateProgress();
+
+  /* ManyChat / DM hot-lead deep link: /#apply skips the intro slide */
+  if (window.location.hash === '#apply') {
+    setTimeout(scrollToForm, 400);
+  }
 
   /* ============================================================
      CALENDLY INIT
@@ -2781,7 +2801,7 @@ const formData = {
   age_range: '',
   primary_goal: '',
   biggest_obstacle: '',
-  commitment_score: '',
+  occupation: '',
   investment_readiness: '',
   show_up_confirmation: '',
   sid: _urlParams.get('sid') || sessionStorage.getItem('session_uuid') || '',
