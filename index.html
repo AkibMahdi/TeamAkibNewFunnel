@@ -2523,9 +2523,9 @@ async function sqSubmit() {
   formData.utm_campaign = params.get('utm_campaign') || formData.utm_campaign;
   
   try {
-    // form_submissions has no `occupation` column — it rides along in the
-    // Make webhook payload only.
+    // The Supabase column was created as "Occupation" (capitalized, case-sensitive).
     const dbRow = Object.assign({}, formData);
+    dbRow.Occupation = dbRow.occupation;
     delete dbRow.occupation;
     const { data, error } = await SUPABASE_CLIENT
       .from('form_submissions')
